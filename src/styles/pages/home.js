@@ -16,17 +16,31 @@ export const TitleContainer = styled.div`
   align-items: center;
   gap: 0.5rem; // 8px
   text-align: center;
+
+  @media (max-width: 430px) {
+    gap: 1rem;
+  }
 `;
 
 export const Title = styled.h1`
   font: ${fonts.title.ttl64};
   color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.title.ttl32};
+    color: ${colors.neutral.nt0};
+  }
 `;
 
 export const Subtitle = styled.p`
   font: ${fonts.text.txt24};
   color: ${colors.neutral.nt0};
   max-width: 80%;
+
+  @media (max-width: 430px) {
+    font: ${fonts.text.txt12};
+    color: ${colors.neutral.nt0};
+  }
 `;
 
 export const PageChoiceContainer = styled.div`
@@ -35,6 +49,10 @@ export const PageChoiceContainer = styled.div`
   align-items: center;
   margin-top: 2.5rem;
   position: relative;
+
+  @media (max-width: 430px) {
+    margin-top: 4.9375rem; // 79px
+  }
 `;
 
 export const Logo = styled.img`
@@ -42,11 +60,21 @@ export const Logo = styled.img`
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+  border-radius: 50%;
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.8);
+
+  @media (max-width: 430px) {
+    width: 68px;
+    height: 68px;
+  }
 `;
 
 export const AnimeImage = styled.div`
   width: 100%;
   height: 25.8125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -71,11 +99,18 @@ export const AnimeImage = styled.div`
   &:hover::before {
     opacity: 0.7;
   }
+
+  @media (max-width: 430px) {
+    height: 18.4375rem; // 295px
+  }
 `;
 
 export const MangaImage = styled.div`
   width: 100%;
   height: 25.8125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -99,15 +134,20 @@ export const MangaImage = styled.div`
   &:hover::before {
     opacity: 0.7;
   }
+
+  @media (max-width: 430px) {
+    height: 18.4375rem; // 295px
+  }
 `;
 
 export const ImageText = styled.h1`
   position: relative;
   z-index: 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10.5625rem;
   font: ${fonts.detail.dtl64};
   color: ${colors.neutral.nt0}; // 169px
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl24};
+    color: ${colors.neutral.nt0};
+  }
 `;
