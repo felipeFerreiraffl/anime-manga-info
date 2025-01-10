@@ -7,7 +7,6 @@ import mangaImg from "../../assets/images/home/manga-img.webp";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 3.5rem; // 56px
 `;
 
 export const TitleContainer = styled.div`
@@ -16,6 +15,7 @@ export const TitleContainer = styled.div`
   align-items: center;
   gap: 0.5rem; // 8px
   text-align: center;
+  margin-top: 3.5rem; // 56px
 
   @media (max-width: 430px) {
     gap: 1rem;

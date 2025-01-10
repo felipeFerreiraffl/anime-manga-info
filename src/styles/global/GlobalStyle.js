@@ -7,7 +7,6 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         list-style: none;
         text-decoration: none;
-        overflow: hidden;
     }
 
     html {
@@ -16,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         height: 100%;
+        overflow-y: hidden;
         background: ${colors.gradient.ppGrd};
     }
 `;
