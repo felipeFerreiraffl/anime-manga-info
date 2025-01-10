@@ -21,6 +21,11 @@ const colors = {
     nt200: "#E0E0E0",
     nt0: "#FFFFFF",
   },
+  gradient: {
+    pkGrd: "linear-gradient(to bottom, #FF1155, #FF3E74, #FF7098)",
+    pkGrd2: "linear-gradient(to right, #FF1155, #FF3E74, #FF7098)",
+    ppGrd: "linear-gradient(to bottom, #08000A, #120016)",
+  },
 };
 
 export default colors;
