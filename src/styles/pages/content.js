@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: ${colors.gradient.ppGrd};
 `;
 
 export const InitialPart = styled.div`
@@ -58,7 +59,7 @@ export const Search = styled.input`
   }
 `;
 
-export const PopularContainer = styled.div`
+export const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -66,10 +67,31 @@ export const PopularContainer = styled.div`
   width: 80%;
 `;
 
-export const PopularTitle = styled.h2`
+export const SectionTitle = styled.h2`
   font: ${fonts.title.ttl64};
   color: ${colors.main.pk600};
   border-bottom: solid 2px ${colors.main.pk600};
   padding-bottom: 0.625rem;
   width: 100%;
+`;
+
+export const SubSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 2.3125rem; // 37px
+  gap: 1.5625rem; // 25px
+  width: 100%;
+`;
+
+export const SubSectionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+`;
+
+export const SubSectionTitle = styled.h3`
+font: ${fonts.detail.dtl48};
+color: ${colors.main.pk600};
 `;

@@ -7,7 +7,7 @@ export default function AppRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/animes" element={<Content secondPage={"Mangás"} title={"Animes"} />} />
-      <Route path="/mangas" element={<Content secondPage={"Animes"} title={"Mangá"} />} />
+      <Route path="/mangas" element={<Content secondPage={"Animes"} title={"Mangás"} />} />
     </Routes>
   );
 }

@@ -7,6 +7,8 @@ import mangaImg from "../../assets/images/home/manga-img.webp";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
+  background: ${colors.gradient.ppGrd};
+  height: 100vh;
 `;
 
 export const TitleContainer = styled.div`

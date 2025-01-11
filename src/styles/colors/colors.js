@@ -6,7 +6,7 @@ const colors = {
     pk400: "#FFA0BB",
     pk200: "#FFC1D3",
   },
-  axiliary: {
+  auxiliary: {
     rd1000: "#FF2222",
     yw1000: "#E8CD1D",
     gn1000: "#00A115",
@@ -24,7 +24,7 @@ const colors = {
   gradient: {
     pkGrd: "linear-gradient(to bottom, #FF1155, #FF3E74, #FF7098)",
     pkGrd2: "linear-gradient(to right, #FF1155, #FF3E74, #FF7098)",
-    ppGrd: "linear-gradient(to bottom, #08000A, #120016)",
+    ppGrd: "linear-gradient(to top, #08000A, #120016)",
   },
 };
 

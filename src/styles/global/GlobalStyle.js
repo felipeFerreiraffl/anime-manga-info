@@ -14,8 +14,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        height: auto;
-        background: ${colors.gradient.ppGrd};
+        height: 100%;
+        /* background: ${colors.gradient.ppGrd}; */
     }
 `;
 

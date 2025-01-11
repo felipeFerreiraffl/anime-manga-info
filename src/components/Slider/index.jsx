@@ -1,64 +1,73 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
 import "swiper/css";
-import { Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
+import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import test from "../../assets/images/img-test.png";
 import colors from "../../styles/colors/colors";
 import {
   Image,
+  Object,
+  Ranking,
   SliderArea,
   SliderButton,
 } from "../../styles/components/slider";
 
 const images = [test, test, test, test, test, test, test, test, test, test];
 
-export default function SliderContent() {
+export default function SliderContent({ image, ranking, separator }) {
+  // Estado para quantos slides serão vistos com ou sem o botão
   const [slidesPerView, setSlidesPerView] = useState(4);
-  const [showPrevButton, setShowPrevButton] = useState(false);
 
-  const prevButtonRef = useRef(null);
-  const nextButtonRef = useRef(null);
+  // Estado para mostrar ou esconder o botão
+  const [showPrevButton, setShowPrevButton] = useState(false);
+  const [showNextButton, setShowNextButton] = useState(true);
+
+  // Estado do Swiper
+  const [swiper, setSwiper] = useState(null);
+
+  useEffect(() => {
+    if (showPrevButton && showNextButton) {
+      setSlidesPerView(3);
+    } else {
+      setSlidesPerView(4);
+    }
+  }, [showPrevButton, showNextButton]);
 
   return (
     <SliderArea>
       {showPrevButton && (
-        <SliderButton ref={prevButtonRef.current} className="prev-button">
+        <SliderButton onClick={() => swiper?.slidePrev()}>
           <HiArrowCircleLeft size={81} color={colors.main.pk600} />
         </SliderButton>
       )}
 
       <Swiper
-        modules={[Navigation, Pagination]}
-        navigation={{
-          nextEl: nextButtonRef.current,
-          prevEl: prevButtonRef.current,
-        }}
-        pagination={{ clickable: true }}
-        slidesPerView={slidesPerView}
+        modules={[Navigation]}
         spaceBetween={30}
+        slidesPerView={slidesPerView}
+        onSwiper={setSwiper}
         onSlideChange={(swiper) => {
-          setShowPrevButton(swiper.activeIndex > 1);
-        }}
-        onSwiper={(swiper) => {
-          swiper.params.navigation.prevEl = prevButtonRef.current;
-          swiper.params.navigation.nextEl = nextButtonRef.current;
-          swiper.navigation.update();
+          setShowPrevButton(swiper.activeIndex > 0);
+          setShowNextButton(swiper.activeIndex + slidesPerView < images.length);
         }}
       >
         {images.map((img, i) => (
           <SwiperSlide key={i}>
-            <div>
+            <Object>
               <Image src={img} alt="Imagem" />
-              <p>{i}º</p>
-            </div>
+              <Ranking>{ranking != null ? `${i}º ${separator} ${ranking}` : ""}</Ranking>
+            </Object>
           </SwiperSlide>
         ))}
       </Swiper>
 
-      <SliderButton ref={nextButtonRef.current} className="next-button">
-        <HiArrowCircleRight size={81} color={colors.main.pk600} />
-      </SliderButton>
+      {showNextButton && (
+        <SliderButton onClick={() => swiper?.slideNext()}>
+          <HiArrowCircleRight size={81} color={colors.main.pk600} />
+        </SliderButton>
+      )}
     </SliderArea>
   );
 }
