@@ -6,8 +6,8 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/animes" element={<Content />} />
-      <Route path="/mangas" element={<Content />} />
+      <Route path="/animes" element={<Content secondPage={"Mangás"} title={"Animes"} />} />
+      <Route path="/mangas" element={<Content secondPage={"Animes"} title={"Mangá"} />} />
     </Routes>
   );
 }

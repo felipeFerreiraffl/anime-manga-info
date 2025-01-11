@@ -7,7 +7,7 @@ import {
 import logo from "../../assets/logos/symbol-jap.svg";
 import { useNavigate } from "react-router-dom";
 
-export default function Header() {
+export default function Header({ secondPage }) {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +17,7 @@ export default function Header() {
         <PageText>Home</PageText>
       </HomeContainer>
 
-      <PageText>Animangá</PageText>
+      <PageText>{secondPage}</PageText>
 
       <PageText>Contatos</PageText>
     </Container>
