@@ -29,3 +29,47 @@ export const ButtonContainer = styled.div`
   margin-top: 2.3125rem; // 37px
   gap: 1.125rem; // 18px
 `;
+
+export const SearchArea = styled.div`
+  background-color: ${colors.neutral.nt200};
+  margin-top: 3.75rem; // 60px
+  border: solid 2px ${colors.main.pk1000};
+  border-radius: 20px;
+  padding: 12px 108px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  transition: 0.3s ease-in-out;
+`;
+
+export const Search = styled.input`
+  outline: none;
+  border: none;
+  text-align: center;
+  background-color: ${colors.neutral.nt200};
+  font: ${fonts.detail.dtl20};
+  color: ${colors.neutral.nt1000};
+
+  &::placeholder {
+    font: ${fonts.detail.dtl20};
+    color: ${colors.neutral.nt500};
+  }
+`;
+
+export const PopularContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 5.25rem; // 84px
+  width: 80%;
+`;
+
+export const PopularTitle = styled.h2`
+  font: ${fonts.title.ttl64};
+  color: ${colors.main.pk600};
+  border-bottom: solid 2px ${colors.main.pk600};
+  padding-bottom: 0.625rem;
+  width: 100%;
+`;

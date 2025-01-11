@@ -14,8 +14,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body {
-        height: 100%;
-        overflow-y: hidden;
+        height: auto;
         background: ${colors.gradient.ppGrd};
     }
 `;
