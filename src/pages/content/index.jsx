@@ -6,8 +6,6 @@ import {
   ButtonContainer,
   Container,
   InitialPart,
-  PopularContainer,
-  PopularTitle,
   Search,
   SearchArea,
   SectionContainer,
@@ -15,10 +13,10 @@ import {
   SubSection,
   SubSectionContainer,
   SubSectionTitle,
-  Title,
+  Title
 } from "../../styles/pages/content";
 
-export default function Content({ secondPage, title }) {
+export default function Content({ type, secondPage, title }) {
   return (
     <Container>
       <Header secondPage={secondPage} />
@@ -44,7 +42,7 @@ export default function Content({ secondPage, title }) {
 
       <SectionContainer>
         <SectionTitle>Mais populares</SectionTitle>
-        <SliderContent ranking={""} separator={""} />
+        <SliderContent type={type} separator={"-"} filter={"sort=popularityRank"} />
       </SectionContainer>
 
       <SectionContainer>
@@ -54,13 +52,13 @@ export default function Content({ secondPage, title }) {
           <SubSectionContainer>
             <SubSectionTitle>Melhores avaliados</SubSectionTitle>
 
-            <SliderContent ranking={"99.99"} separator={"-"} />
+            <SliderContent type={type} separator={"-"} filter={"sort=-averageRating"} />
           </SubSectionContainer>
 
           <SubSectionContainer>
             <SubSectionTitle>Recentes</SubSectionTitle>
 
-            <SliderContent />
+            <SliderContent type={type} />
           </SubSectionContainer>
         </SubSection>
       </SectionContainer>

@@ -93,5 +93,5 @@ export const SubSectionContainer = styled.div`
 
 export const SubSectionTitle = styled.h3`
 font: ${fonts.detail.dtl48};
-color: ${colors.main.pk600};
+color: ${colors.main.pk400};
 `;

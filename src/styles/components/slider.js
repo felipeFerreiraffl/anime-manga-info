@@ -46,3 +46,18 @@ export const SliderButton = styled.button`
     transform: scale(1.1);
   }
 `;
+
+export const LoadingImage = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${colors.neutral.nt500};
+  max-width: 201px;
+  height: 282px;
+  border-radius: 5px;
+`;
+
+export const LoadingText = styled.p`
+  font: ${fonts.detail.dtl40};
+  color: ${colors.neutral.nt0};
+`;
