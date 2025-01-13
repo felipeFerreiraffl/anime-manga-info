@@ -13,7 +13,7 @@ import {
   SubSection,
   SubSectionContainer,
   SubSectionTitle,
-  Title
+  Title,
 } from "../../styles/pages/content";
 
 export default function Content({ type, secondPage, title }) {
@@ -42,7 +42,12 @@ export default function Content({ type, secondPage, title }) {
 
       <SectionContainer>
         <SectionTitle>Mais populares</SectionTitle>
-        <SliderContent type={type} separator={"-"} filter={"sort=popularityRank"} />
+        <SliderContent
+          type={type}
+          separator={"-"}
+          filter={"sort=popularityRank"}
+          contentLength={10}
+        />
       </SectionContainer>
 
       <SectionContainer>
@@ -52,13 +57,22 @@ export default function Content({ type, secondPage, title }) {
           <SubSectionContainer>
             <SubSectionTitle>Melhores avaliados</SubSectionTitle>
 
-            <SliderContent type={type} separator={"-"} filter={"sort=-averageRating"} />
+            <SliderContent
+              type={type}
+              separator={"-"}
+              filter={"sort=-averageRating&filter[status]=current"}
+              contentLength={10}
+            />
           </SubSectionContainer>
 
           <SubSectionContainer>
             <SubSectionTitle>Recentes</SubSectionTitle>
 
-            <SliderContent type={type} />
+            <SliderContent
+              type={type}
+              filter={"sort=-startDate"}
+              contentLength={20}
+            />
           </SubSectionContainer>
         </SubSection>
       </SectionContainer>

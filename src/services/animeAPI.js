@@ -30,9 +30,9 @@ export const getAnime = async (animeId) => {
 };
 
 // FIltrar animes (popularidade, temporada, melhores, ...)
-export const getAnimesByFilter = async (filter) => {
+export const getAnimesByFilter = async (filter, limit = 20) => {
   try {
-    const response = await fetch(`${apiURL}/anime?${filter}`);
+    const response = await fetch(`${apiURL}/anime?${filter}&page[limit]=${limit}&page[offset]=0`);
     const data = await response.json();
 
     return data.data;
@@ -45,9 +45,11 @@ export const getAnimesByFilter = async (filter) => {
 // Mangás
 
 // FIltrar mangás (popularidade, temporada, melhores, ...)
-export const getMangasByFilter = async (filter) => {
+export const getMangasByFilter = async (filter, limit = 20) => {
   try {
-    const response = await fetch(`${apiURL}/manga?${filter}`);
+    const response = await fetch(
+      `${apiURL}/manga?${filter}&page[limit]=${limit}&page[offset]=0`
+    );
     const data = await response.json();
 
     return data.data;

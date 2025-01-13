@@ -16,7 +16,7 @@ import {
   SliderButton,
 } from "../../styles/components/slider";
 
-export default function SliderContent({ type, filter, ranking, separator }) {
+export default function SliderContent({ type, filter, separator, contentLength }) {
   // Estado para quantos slides serão vistos com ou sem o botão
   const [slidesPerView, setSlidesPerView] = useState(4);
 
@@ -39,16 +39,16 @@ export default function SliderContent({ type, filter, ranking, separator }) {
 
   // Carrega os animes
   useEffect(() => {
-    const fetchAnimes = async (filter) => {
+    const fetchAnimes = async () => {
       try {
         if (type === "anime") {
-          const response = await getAnimesByFilter(filter);
+          const response = await getAnimesByFilter(filter, contentLength);
 
-          setContent(response.slice(0, 10));
+          setContent(response);
         } else {
-          const response = await getMangasByFilter(filter);
+          const response = await getMangasByFilter(filter, contentLength);
 
-          setContent(response.slice(0, 10));
+          setContent(response);
         }
       } catch (error) {
         console.error("Erro ao buscar animes. ", error);
@@ -58,7 +58,7 @@ export default function SliderContent({ type, filter, ranking, separator }) {
       }
     };
 
-    fetchAnimes(filter);
+    fetchAnimes();
   }, [filter]);
 
   return (
@@ -96,8 +96,7 @@ export default function SliderContent({ type, filter, ranking, separator }) {
                   alt={`Capa de ${anime.attributes.canonicalTitle}`}
                 />
                 <Ranking>
-                  {filter === "sort=popularityRank" ||
-                  filter === "sort=-averageRating"
+                  {filter !== "sort=-startDate"
                     ? `${i + 1}º ${separator} ${anime.attributes.averageRating}`
                     : ""}
                 </Ranking>
