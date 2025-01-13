@@ -1,5 +1,6 @@
 import { HiSearch } from "react-icons/hi";
 import Button from "../../components/Button";
+import GenderSlider from "../../components/GenderSlider";
 import Header from "../../components/Header";
 import SliderContent from "../../components/Slider";
 import {
@@ -79,6 +80,8 @@ export default function Content({ type, secondPage, title }) {
 
       <SectionContainer>
         <SectionTitle>Gêneros</SectionTitle>
+
+        <GenderSlider />
       </SectionContainer>
     </Container>
   );

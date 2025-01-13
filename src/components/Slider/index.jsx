@@ -7,7 +7,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { getAnimesByFilter, getMangasByFilter } from "../../services/animeAPI";
 import colors from "../../styles/colors/colors";
 import {
+  ContentName,
   Image,
+  ImageContainer,
+  ImageHover,
   LoadingImage,
   LoadingText,
   Object,
@@ -15,8 +18,14 @@ import {
   SliderArea,
   SliderButton,
 } from "../../styles/components/slider";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function SliderContent({ type, filter, separator, contentLength }) {
+export default function SliderContent({
+  type,
+  filter,
+  separator,
+  contentLength,
+}) {
   // Estado para quantos slides serão vistos com ou sem o botão
   const [slidesPerView, setSlidesPerView] = useState(4);
 
@@ -27,6 +36,8 @@ export default function SliderContent({ type, filter, separator, contentLength }
 
   const [content, setContent] = useState([]); // Estado de animes para os slides
   const [loading, setLoading] = useState(true); // Estado de carregamento dos itens
+
+  const navigate = useNavigate(); // Variável de navegação
 
   // Mostrar o botão de voltar quando trocar de slide
   useEffect(() => {
@@ -41,15 +52,12 @@ export default function SliderContent({ type, filter, separator, contentLength }
   useEffect(() => {
     const fetchAnimes = async () => {
       try {
-        if (type === "anime") {
-          const response = await getAnimesByFilter(filter, contentLength);
+        const response =
+          type === "anime"
+            ? await getAnimesByFilter(filter, contentLength)
+            : await getMangasByFilter(filter, contentLength);
 
-          setContent(response);
-        } else {
-          const response = await getMangasByFilter(filter, contentLength);
-
-          setContent(response);
-        }
+        setContent(response);
       } catch (error) {
         console.error("Erro ao buscar animes. ", error);
         return [];
@@ -59,7 +67,7 @@ export default function SliderContent({ type, filter, separator, contentLength }
     };
 
     fetchAnimes();
-  }, [filter]);
+  }, [type, filter, separator, contentLength]); // Recarrega as informações toda vez que muda de página
 
   return (
     <SliderArea>
@@ -81,29 +89,46 @@ export default function SliderContent({ type, filter, separator, contentLength }
           );
         }}
       >
-        {content.map((anime, i) => (
-          <SwiperSlide key={anime.id}>
-            {loading ? (
+        {content.map((content, i) => {
+          return (
+            <SwiperSlide key={content.id}>
               <Object>
-                <LoadingImage>
-                  <LoadingText>Carregando...</LoadingText>
-                </LoadingImage>
-              </Object>
-            ) : (
-              <Object>
-                <Image
-                  src={anime.attributes.posterImage.original}
-                  alt={`Capa de ${anime.attributes.canonicalTitle}`}
-                />
+                {/* Imagem de carregamento */}
+                {loading && (
+                  <LoadingImage>
+                    <LoadingText>Carregando...</LoadingText>
+                  </LoadingImage>
+                )}
+                {/* Container com a imagem para o hover */}
+                <ImageContainer
+                  onClick={() =>
+                    type === "anime"
+                      ? navigate(`/anime/${content.id}`)
+                      : navigate(`/manga/${content.id}`)
+                  }
+                >
+                  <Image
+                    src={content.attributes.posterImage.original}
+                    alt={`Capa de ${content.attributes.canonicalTitle}`}
+                  />
+                  {/* Aparece apenas depois do hover */}
+                  <ImageHover className="overlay">
+                    <ContentName>
+                      {content.attributes.canonicalTitle}
+                    </ContentName>
+                  </ImageHover>
+                </ImageContainer>
                 <Ranking>
                   {filter !== "sort=-startDate"
-                    ? `${i + 1}º ${separator} ${anime.attributes.averageRating}`
+                    ? `${i + 1}º ${separator} ${
+                        content.attributes.averageRating
+                      }`
                     : ""}
                 </Ranking>
               </Object>
-            )}
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          );
+        })}
       </Swiper>
 
       {showNextButton && (

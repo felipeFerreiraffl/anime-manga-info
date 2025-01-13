@@ -1,8 +1,8 @@
 import { Card, Gender } from "../../styles/components/genderCard";
 
-export default function GenderCard({ background, gender }) {
+export default function GenderCard({ background, gender, onClick }) {
  return (
-   <Card backgroundImage={background}>
+   <Card onClick={onClick} backgroundImage={background}>
     <Gender>{gender}</Gender>
    </Card>
  );

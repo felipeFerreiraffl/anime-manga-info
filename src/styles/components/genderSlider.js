@@ -15,4 +15,14 @@ export const GenderArea = styled.div`
   }
 `;
 
-export const GenderButton = styled.button(SliderButton)``;
+export const GenderButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    filter: brightness(1.2);
+    transform: scale(1.1);
+  }
+`;

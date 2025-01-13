@@ -17,7 +17,13 @@ export default function Header({ secondPage }) {
         <PageText>Home</PageText>
       </HomeContainer>
 
-      <PageText>{secondPage}</PageText>
+      <PageText
+        onClick={() =>
+          secondPage === "Animes" ? navigate("/animes") : navigate("/mangas")
+        }
+      >
+        {secondPage}
+      </PageText>
 
       <PageText>Contatos</PageText>
     </Container>
