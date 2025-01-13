@@ -76,6 +76,10 @@ export default function Content({ type, secondPage, title }) {
           </SubSectionContainer>
         </SubSection>
       </SectionContainer>
+
+      <SectionContainer>
+        <SectionTitle>Gêneros</SectionTitle>
+      </SectionContainer>
     </Container>
   );
 }
