@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { HiArrowCircleLeft, HiArrowCircleRight } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
@@ -18,7 +19,6 @@ import {
   SliderArea,
   SliderButton,
 } from "../../styles/components/slider";
-import { useLocation, useNavigate } from "react-router-dom";
 
 export default function SliderContent({
   type,

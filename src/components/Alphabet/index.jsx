@@ -6,7 +6,7 @@ import {
   SecondLine,
 } from "../../styles/components/alphabet";
 
-export default function Alphabet() {
+export default function Alphabet({ onClick }) {
   const alphabetic = [
     "#",
     "A",
@@ -40,14 +40,14 @@ export default function Alphabet() {
   return (
     <AlphabetArea>
       <FirstLine>
-        {alphabetic.filter((_, i) => i <= 13).map((letter, i) => (
-          <LetterCard key={i} letter={letter} />
+        {alphabetic.slice(0, 14).map((letter, i) => (
+          <LetterCard key={i} letter={letter} onClick={() => onClick(letter)} />
         ))}
       </FirstLine>
 
       <SecondLine>
-        {alphabetic.filter((_, i) => i > 13).map((letter, i) => (
-          <LetterCard key={i} letter={letter} />
+        {alphabetic.slice(14).map((letter, i) => (
+          <LetterCard key={i} letter={letter} onClick={() => onClick(letter)} />
         ))}
       </SecondLine>
     </AlphabetArea>

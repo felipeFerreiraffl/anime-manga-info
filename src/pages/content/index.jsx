@@ -1,11 +1,21 @@
+import { useEffect, useState } from "react";
 import { HiSearch } from "react-icons/hi";
+import Alphabet from "../../components/Alphabet";
+import AnimeCard from "../../components/ContentCard";
 import Button from "../../components/Button";
 import GenderSlider from "../../components/GenderSlider";
 import Header from "../../components/Header";
 import SliderContent from "../../components/Slider";
+import { getAnimesByFilter, getMangasByFilter } from "../../services/animeAPI";
 import {
+  AnimeCardContainer,
+  AnimeCardLoading,
+  AnimeCardLoadingText,
   ButtonContainer,
   Container,
+  ContentCardContainer,
+  ContentCardLoading,
+  ContentCardLoadingText,
   InitialPart,
   Search,
   SearchArea,
@@ -16,11 +26,39 @@ import {
   SubSectionTitle,
   Title,
 } from "../../styles/pages/content";
-import Alphabet from "../../components/Alphabet";
-import AnimeCard from "../../components/AnimeCard";
-import test from "../../assets/images/img-test.png";
+import ContentCard from "../../components/ContentCard";
 
 export default function Content({ type, secondPage, title }) {
+  const [content, setContent] = useState([]); // Estado para os cards dos animes
+  const [selectedLetter, setSelectedLetter] = useState(""); // Estado para selecionar as letras
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchContentByLetter = async () => {
+      if (!selectedLetter) return;
+
+      try {
+        const response =
+          type === "anime"
+            ? await getAnimesByFilter(`filter[text]=${selectedLetter}`)
+            : await getMangasByFilter(`filter[text]=${selectedLetter}`);
+
+        const filteredResponse = response.filter((content) =>
+          content.attributes.canonicalTitle.toLowerCase().startsWith(selectedLetter.toLowerCase())
+        );
+        console.log(`Contéudo com a letra ${selectedLetter}`, filteredResponse);
+
+        setContent(filteredResponse);
+      } catch (error) {
+        console.error("Erro ao buscar o contéudo desejado. ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchContentByLetter();
+  }, [selectedLetter]);
+
   return (
     <Container>
       <Header secondPage={secondPage} />
@@ -90,9 +128,24 @@ export default function Content({ type, secondPage, title }) {
       <SectionContainer>
         <SectionTitle>Ordem alfabética</SectionTitle>
 
-        <Alphabet />
+        <Alphabet selectedLetter={selectedLetter} onClick={(letter) => setSelectedLetter(letter)} />
 
-        <AnimeCard image={test} title={"Anime"} japTitle={"51561661"} />
+        {loading ? (
+          <ContentCardLoading>
+            <ContentCardLoadingText>Selecione uma letra...</ContentCardLoadingText>
+          </ContentCardLoading>
+        ) : (
+          <ContentCardContainer>
+            {content.map((content) => (
+              <ContentCard
+                key={content.id}
+                image={content.attributes.posterImage.original}
+                japTitle={content.attributes.titles.ja_jp}
+                title={content.attributes.canonicalTitle}
+              />
+            ))}
+          </ContentCardContainer>
+        )}
       </SectionContainer>
     </Container>
   );

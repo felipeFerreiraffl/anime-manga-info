@@ -7,7 +7,7 @@ export const Card = styled.div`
   align-items: flex-start;
   background-color: ${colors.auxiliary.pp1000};
   border-radius: 5px;
-  width: 91%;
+  width: 100%;
   margin-top: 3.125rem; // 50px
   padding: 28px 50px;
   gap: 1.5625rem; // 25px

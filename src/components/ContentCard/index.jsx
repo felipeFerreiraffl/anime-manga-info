@@ -1,6 +1,6 @@
-import { AnimeJapTitle, AnimeTitle, Card, CardImage, CardTextContainer } from "../../styles/components/animeCard";
+import { AnimeJapTitle, AnimeTitle, Card, CardImage, CardTextContainer } from "../../styles/components/contentCard";
 
-export default function AnimeCard({ image, title, japTitle }) {
+export default function ContentCard({ image, title, japTitle }) {
  return (
    <Card>
     <CardImage src={image} />

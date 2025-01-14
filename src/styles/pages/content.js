@@ -92,6 +92,29 @@ export const SubSectionContainer = styled.div`
 `;
 
 export const SubSectionTitle = styled.h3`
-font: ${fonts.detail.dtl48};
-color: ${colors.main.pk400};
+  font: ${fonts.detail.dtl48};
+  color: ${colors.main.pk400};
+`;
+
+export const ContentCardContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3.125rem; // 50px
+`;
+
+export const ContentCardLoading = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3.125rem; // 50px
+`;
+
+export const ContentCardLoadingText = styled.p`
+  font: ${fonts.detail.dtl40};
+  color: ${colors.main.pk400};
 `;
