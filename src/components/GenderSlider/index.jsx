@@ -8,7 +8,7 @@ import { GenderArea, GenderButton } from "../../styles/components/genderSlider";
 import GenderCard from "../GenderCard";
 import { useNavigate } from "react-router-dom";
 
-export default function GenderSlider() {
+export default function GenderSlider({ type }) {
   const [slidesPerView, setSlidesPerView] = useState(4);
   const [showPrevButton, setShowPrevButton] = useState(false);
   const [showNextButton, setShowNextButton] = useState(true);
@@ -45,7 +45,15 @@ export default function GenderSlider() {
       >
         {genderImages.map((image) => (
           <SwiperSlide key={image.id}>
-            <GenderCard onClick={() => navigate(`/genero/${image.page}`)} background={image.image} gender={image.gender} />
+            <GenderCard
+              onClick={() =>
+                type === "anime"
+                  ? navigate(`/animes/genero/${image.page}`)
+                  : navigate(`/mangas/genero/${image.page}`)
+              }
+              background={image.image}
+              gender={image.gender}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

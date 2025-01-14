@@ -16,6 +16,9 @@ import {
   SubSectionTitle,
   Title,
 } from "../../styles/pages/content";
+import Alphabet from "../../components/Alphabet";
+import AnimeCard from "../../components/AnimeCard";
+import test from "../../assets/images/img-test.png";
 
 export default function Content({ type, secondPage, title }) {
   return (
@@ -81,7 +84,15 @@ export default function Content({ type, secondPage, title }) {
       <SectionContainer>
         <SectionTitle>Gêneros</SectionTitle>
 
-        <GenderSlider />
+        <GenderSlider type={type} />
+      </SectionContainer>
+
+      <SectionContainer>
+        <SectionTitle>Ordem alfabética</SectionTitle>
+
+        <Alphabet />
+
+        <AnimeCard image={test} title={"Anime"} japTitle={"51561661"} />
       </SectionContainer>
     </Container>
   );
