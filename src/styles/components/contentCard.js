@@ -11,6 +11,12 @@ export const Card = styled.div`
   margin-top: 3.125rem; // 50px
   padding: 28px 50px;
   gap: 1.5625rem; // 25px
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  
+  &:hover {
+    background-color: ${colors.auxiliary.pp500};
+  }
 `;
 
 export const CardImage = styled.img`

@@ -1,8 +1,8 @@
 import { ButtonText, ButtonView } from "../../styles/components/button";
 
-export default function Button({ text }) {
+export default function Button({ text, onClick }) {
  return (
-   <ButtonView>
+   <ButtonView onClick={onClick}>
     <ButtonText>{text}</ButtonText>
    </ButtonView>
  );

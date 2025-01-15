@@ -15,6 +15,10 @@ export const Card = styled.div`
   &:hover {
     background: ${colors.main.pk400};
   }
+
+  .focused {
+    background: ${colors.main.pk400};
+  }
 `;
 
 export const Letter = styled.p`

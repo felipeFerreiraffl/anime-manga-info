@@ -65,6 +65,25 @@ export const SectionContainer = styled.div`
   align-items: flex-start;
   margin-top: 5.25rem; // 84px
   width: 80%;
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0.9375rem; // 15px
+  }
+
+  .pagination li {
+    margin-top: 4.25rem; // 68px
+    background-color: ${colors.main.pk800};
+    font: ${fonts.title.ttl32};
+    color: ${colors.neutral.nt0};
+    padding: 8px 21px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -117,4 +136,50 @@ export const ContentCardLoading = styled.div`
 export const ContentCardLoadingText = styled.p`
   font: ${fonts.detail.dtl40};
   color: ${colors.main.pk400};
+`;
+
+export const FinalContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin-top: 6.25rem; // 100px
+  border-top: solid 2px ${colors.main.pk600};
+  padding-top: 4.25rem; // 68px
+  gap: 7.1875rem; // 115px
+`;
+
+export const FinalImage = styled.img`
+  width: 24.9375rem; // 399px
+  aspect-ratio: 1 / 1;
+`;
+
+export const FinalTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3.75rem; // 60px
+`;
+
+export const FinalTitle = styled.h1`
+  font: ${fonts.title.ttl64};
+  color: ${colors.neutral.nt0};
+`;
+
+export const FinalContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.375rem; // 22px
+`;
+
+export const FinalContentTitle = styled.h2`
+  font: ${fonts.detail.dtl40};
+  color: ${colors.neutral.nt0};
+`;
+
+export const FinalButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.9375rem; // 15px
 `;

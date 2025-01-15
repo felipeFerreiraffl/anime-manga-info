@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { HiSearch } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 import Alphabet from "../../components/Alphabet";
-import AnimeCard from "../../components/ContentCard";
 import Button from "../../components/Button";
 import GenderSlider from "../../components/GenderSlider";
 import Header from "../../components/Header";
 import SliderContent from "../../components/Slider";
-import { getAnimesByFilter, getMangasByFilter } from "../../services/animeAPI";
 import {
-  AnimeCardContainer,
-  AnimeCardLoading,
-  AnimeCardLoadingText,
   ButtonContainer,
   Container,
-  ContentCardContainer,
-  ContentCardLoading,
-  ContentCardLoadingText,
+  FinalButtonContainer,
+  FinalContainer,
+  FinalContentContainer,
+  FinalContentTitle,
+  FinalImage,
+  FinalTextContainer,
+  FinalTitle,
   InitialPart,
   Search,
   SearchArea,
@@ -26,51 +26,29 @@ import {
   SubSectionTitle,
   Title,
 } from "../../styles/pages/content";
-import ContentCard from "../../components/ContentCard";
+import finalAnime from "../../assets/images/final/anime-final.png";
+import finalManga from "../../assets/images/final/manga-final.png";
+import Footer from "../../components/Footer";
+import handleScrollEvent from "../../services/scripts/scrollEvent";
 
 export default function Content({ type, secondPage, title }) {
   const [content, setContent] = useState([]); // Estado para os cards dos animes
   const [selectedLetter, setSelectedLetter] = useState(""); // Estado para selecionar as letras
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchContentByLetter = async () => {
-      if (!selectedLetter) return;
-
-      try {
-        const response =
-          type === "anime"
-            ? await getAnimesByFilter(`filter[text]=${selectedLetter}`)
-            : await getMangasByFilter(`filter[text]=${selectedLetter}`);
-
-        const filteredResponse = response.filter((content) =>
-          content.attributes.canonicalTitle.toLowerCase().startsWith(selectedLetter.toLowerCase())
-        );
-        console.log(`Contéudo com a letra ${selectedLetter}`, filteredResponse);
-
-        setContent(filteredResponse);
-      } catch (error) {
-        console.error("Erro ao buscar o contéudo desejado. ", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchContentByLetter();
-  }, [selectedLetter]);
+  const navigate = useNavigate();
 
   return (
-    <Container>
+    <Container id="start">
       <Header secondPage={secondPage} />
 
       <InitialPart>
         <Title>{title}</Title>
 
         <ButtonContainer>
-          <Button text={"Mais populares"} />
-          <Button text={`${title} da temporada`} />
-          <Button text={"Gêneros"} />
-          <Button text={"Ordem alfabética"} />
+          <Button text={"Mais populares"} onClick={() => handleScrollEvent("#pop")} />
+          <Button text={`${title} da temporada`} onClick={() => handleScrollEvent("#temp")} />
+          <Button text={"Gêneros"} onClick={() => handleScrollEvent("#gen")} />
+          <Button text={"Ordem alfabética"} onClick={() => handleScrollEvent("#alf")} />
         </ButtonContainer>
       </InitialPart>
 
@@ -82,7 +60,7 @@ export default function Content({ type, secondPage, title }) {
         />
       </SearchArea>
 
-      <SectionContainer>
+      <SectionContainer id="pop">
         <SectionTitle>Mais populares</SectionTitle>
         <SliderContent
           type={type}
@@ -92,7 +70,7 @@ export default function Content({ type, secondPage, title }) {
         />
       </SectionContainer>
 
-      <SectionContainer>
+      <SectionContainer id="temp">
         <SectionTitle>{title} da temporada</SectionTitle>
 
         <SubSection>
@@ -119,34 +97,55 @@ export default function Content({ type, secondPage, title }) {
         </SubSection>
       </SectionContainer>
 
-      <SectionContainer>
+      <SectionContainer id="gen">
         <SectionTitle>Gêneros</SectionTitle>
 
         <GenderSlider type={type} />
       </SectionContainer>
 
-      <SectionContainer>
+      <SectionContainer id="alf">
         <SectionTitle>Ordem alfabética</SectionTitle>
 
-        <Alphabet selectedLetter={selectedLetter} onClick={(letter) => setSelectedLetter(letter)} />
-
-        {loading ? (
-          <ContentCardLoading>
-            <ContentCardLoadingText>Selecione uma letra...</ContentCardLoadingText>
-          </ContentCardLoading>
-        ) : (
-          <ContentCardContainer>
-            {content.map((content) => (
-              <ContentCard
-                key={content.id}
-                image={content.attributes.posterImage.original}
-                japTitle={content.attributes.titles.ja_jp}
-                title={content.attributes.canonicalTitle}
-              />
-            ))}
-          </ContentCardContainer>
-        )}
+        <Alphabet
+          selectedLetter={selectedLetter}
+          onClick={(letter) => setSelectedLetter(letter)}
+        />
       </SectionContainer>
+
+      <FinalContainer>
+        <FinalImage
+          src={type === "anime" ? finalAnime : finalManga}
+          alt={
+            type === "anime"
+              ? "Marin Kitagawa (Sono Bisque)"
+              : "Nami (One Piece)"
+          }
+        />
+
+        <FinalTextContainer>
+          <FinalTitle>Fim da página!</FinalTitle>
+
+          <FinalContentContainer>
+            <FinalContentTitle>O que gostaria de ver agora?</FinalContentTitle>
+
+            <FinalButtonContainer>
+              <Button
+                text={"Voltar ao início"}
+                onClick={() => handleScrollEvent("#start")}
+              />
+              <Button
+                text={type === "anime" ? "Mangás" : "Animes"}
+                onClick={() =>
+                  type === "anime" ? navigate("/mangas") : navigate("/animes")
+                }
+              />
+              <Button text={"Contatos"} onClick={() => navigate("/contatos")} />
+            </FinalButtonContainer>
+          </FinalContentContainer>
+        </FinalTextContainer>
+      </FinalContainer>
+
+      <Footer />
     </Container>
   );
 }

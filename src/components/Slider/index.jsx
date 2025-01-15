@@ -57,7 +57,7 @@ export default function SliderContent({
             ? await getAnimesByFilter(filter, contentLength)
             : await getMangasByFilter(filter, contentLength);
 
-        setContent(response);
+        setContent(response.data);
       } catch (error) {
         console.error("Erro ao buscar animes. ", error);
         return [];

@@ -40,14 +40,14 @@ export default function Alphabet({ onClick }) {
   return (
     <AlphabetArea>
       <FirstLine>
-        {alphabetic.slice(0, 14).map((letter, i) => (
-          <LetterCard key={i} letter={letter} onClick={() => onClick(letter)} />
+        {alphabetic.slice(0, 14).map((letter, index) => (
+          <LetterCard key={index} letter={letter} onClick={() => onClick(letter)} />
         ))}
       </FirstLine>
 
       <SecondLine>
-        {alphabetic.slice(14).map((letter, i) => (
-          <LetterCard key={i} letter={letter} onClick={() => onClick(letter)} />
+        {alphabetic.slice(14).map((letter, index) => (
+          <LetterCard key={index} letter={letter} onClick={() => onClick(letter)} />
         ))}
       </SecondLine>
     </AlphabetArea>

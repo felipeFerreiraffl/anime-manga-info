@@ -1,8 +1,8 @@
 import { AnimeJapTitle, AnimeTitle, Card, CardImage, CardTextContainer } from "../../styles/components/contentCard";
 
-export default function ContentCard({ image, title, japTitle }) {
+export default function ContentCard({ image, title, japTitle, onClick }) {
  return (
-   <Card>
+   <Card onClick={onClick}>
     <CardImage src={image} />
 
     <CardTextContainer>
