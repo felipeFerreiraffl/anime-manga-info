@@ -6,23 +6,9 @@ const apiURL = "https://kitsu.io/api/edge";
 export const getAnime = async (animeId) => {
   try {
     const response = await fetch(`${apiURL}/anime/${animeId}`);
-    const data = await response.data.json();
+    const data = await response.json();
 
-    return {
-      mainTitle: data.attributes.canonicalTitle,
-      enjpTitle: data.attributes.titles.en_jp,
-      jpTitle: data.attributes.titles.ja_jp,
-      posterImage: data.attributes.posterImage.original,
-      coverImage: data.attributes.coverImage.original,
-      synopsis: data.attributes.synopsis,
-      creationDate: data.attributes.startDate,
-      episodes: data.attributes.episodeCount,
-      ageRating: data.attributes.ageRating,
-      rating: data.attributes.averageRating,
-      popularityRank: data.attributes.popularityRank,
-      ratingRank: data.attributes.ratingRank,
-      status: data.attributes.status,
-    };
+    return data.data;
   } catch (error) {
     console.error("Erro ao procurar informações sobre o anime. ", error);
     return [];
@@ -44,6 +30,19 @@ export const getAnimesByFilter = async (filter, limit = 20, offset) => {
 };
 
 // Mangás
+
+// Pegar um mangá específico
+export const getManga = async (mangaId) => {
+  try {
+    const response = await fetch(`${apiURL}/manga/${mangaId}`);
+    const data = await response.json();
+
+    return data.data;
+  } catch (error) {
+    console.error("Erro ao procurar informações sobre o mangá. ", error);
+    return [];
+  }
+};
 
 // FIltrar mangás (popularidade, temporada, melhores, ...)
 export const getMangasByFilter = async (filter, limit = 20, offset) => {
