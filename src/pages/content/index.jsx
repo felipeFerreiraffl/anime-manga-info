@@ -26,6 +26,7 @@ import {
   SubSectionContainer,
   SubSectionTitle,
   SuggestionContainer,
+  SuggestionError,
   SuggestionImage,
   SuggestionTitle,
   Title,
@@ -102,7 +103,7 @@ export default function Content({ type, secondPage, title }) {
 
   // Foque e desfoque do input da pesquisa
   const handleFocus = () => setFocused(true);
-  const handleBlur = () => setTimeout(() => setFocused(false), 200);
+  const handleBlur = () => setTimeout(() => setFocused(false), 200); // Demora um tempo até sair do input para poder clicar nos cards
 
   return (
     <Container id="start">
@@ -137,22 +138,26 @@ export default function Content({ type, secondPage, title }) {
           onBlur={handleBlur}
         />
 
-        {focused && suggestions.length > 0 && (
+        {focused && (
           <Results className="results">
-            {suggestions.map((content) => (
-              <SuggestionContainer
-                key={content.id}
-                onClick={() => handleSearchClick(content.id)}
-              >
-                <SuggestionImage
-                  src={content.attributes.posterImage?.original}
-                />
+            {suggestions.length === 0 && !loading && (
+              <SuggestionError>Nada foi encontrado 😢</SuggestionError>
+            )}
+            {suggestions.length > 0 &&
+              suggestions.map((content) => (
+                <SuggestionContainer
+                  key={content.id}
+                  onClick={() => handleSearchClick(content.id)}
+                >
+                  <SuggestionImage
+                    src={content.attributes.posterImage?.original}
+                  />
 
-                <SuggestionTitle>
-                  {content.attributes.canonicalTitle}
-                </SuggestionTitle>
-              </SuggestionContainer>
-            ))}
+                  <SuggestionTitle>
+                    {content.attributes.canonicalTitle}
+                  </SuggestionTitle>
+                </SuggestionContainer>
+              ))}
           </Results>
         )}
 

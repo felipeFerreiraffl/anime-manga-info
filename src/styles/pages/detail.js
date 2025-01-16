@@ -140,3 +140,10 @@ export const InfosText = styled.p`
   font: ${fonts.detail.dtl36};
   color: ${colors.neutral.nt0};
 `;
+
+export const LoadingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;

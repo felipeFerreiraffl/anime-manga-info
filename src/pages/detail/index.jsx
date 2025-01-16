@@ -15,6 +15,7 @@ import {
   Infos,
   InfosText,
   InitialDetails,
+  LoadingContainer,
   Synopsis,
 } from "../../styles/pages/detail";
 import Header from "../../components/Header";
@@ -60,16 +61,16 @@ export default function Detail({ type, secondPage }) {
       />
 
       {loading ? (
-        <div>
-          <p>Carregando...</p>
-        </div>
+        <LoadingContainer>
+          <InfosText>Carregando...</InfosText>
+        </LoadingContainer>
       ) : (
         <>
           <InitialDetails
-            backgroundImage={content.attributes.coverImage.original ? content.attributes.coverImage.original : "none"}
+            backgroundImage={content.attributes.coverImage?.original || "none"}
           >
             <ContentImage
-              src={content.attributes.posterImage.original}
+              src={content.attributes.posterImage?.original || ""}
               alt={`Capa de ${content.attributes.canonicalTitle}`}
             />
 
@@ -114,45 +115,45 @@ export default function Detail({ type, secondPage }) {
               {type === "anime" ? (
                 <>
                   <InfosText>
-                    Data de criação: {content.attributes.startDate}
+                    Data de criação: {content.attributes.startDate || "?"}
                   </InfosText>
                   <InfosText>
-                    Episódios: {content.attributes.episodeCount}
+                    Episódios: {content.attributes.episodeCount || "?"}
                   </InfosText>
-                  <InfosText>Status: {content.attributes.status}</InfosText>
+                  <InfosText>Status: {content.attributes.status || "?"}</InfosText>
                   <InfosText>
-                    Idade indicativa: {content.attributes.ageRating}
-                  </InfosText>
-                  <InfosText>
-                    Ranking de popularidade: {content.attributes.popularityRank}
+                    Idade indicativa: {content.attributes.ageRating || "?"}
                   </InfosText>
                   <InfosText>
-                    Ranking de avaliação: {content.attributes.ratingRank}
+                    Ranking de popularidade: {content.attributes.popularityRank || "?"}
+                  </InfosText>
+                  <InfosText>
+                    Ranking de avaliação: {content.attributes.ratingRank || "?"}
                   </InfosText>
                 </>
               ) : (
                 <>
                   <InfosText>
-                    Data de criação: {content.attributes.startDate}
+                    Data de criação: {content.attributes.startDate || "?"}
                   </InfosText>
                   <InfosText>
-                    Capítulos: {content.attributes.chapterCount}
+                    Capítulos: {content.attributes.chapterCount || "?"}
                   </InfosText>
                   <InfosText>
-                    Volumes: {content.attributes.volumeCount}
+                    Volumes: {content.attributes.volumeCount || "?"}
                   </InfosText>
                   <InfosText>
-                    Serialização: {content.attributes.serialization}
+                    Serialização: {content.attributes.serialization || "?"}
                   </InfosText>
-                  <InfosText>Status: {content.attributes.status}</InfosText>
+                  <InfosText>Status: {content.attributes.status || "?"}</InfosText>
                   <InfosText>
-                    Idade indicativa: {content.attributes.ageRating}
-                  </InfosText>
-                  <InfosText>
-                    Ranking de popularidade: {content.attributes.popularityRank}
+                    Idade indicativa: {content.attributes.ageRating || "?"}
                   </InfosText>
                   <InfosText>
-                    Ranking de avaliação: {content.attributes.ratingRank}
+                    Ranking de popularidade: {content.attributes.popularityRank || "?"}
+                  </InfosText>
+                  <InfosText>
+                    Ranking de avaliação: {content.attributes.ratingRank || "?"}
                   </InfosText>
                 </>
               )}
