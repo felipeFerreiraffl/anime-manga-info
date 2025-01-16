@@ -17,6 +17,7 @@ import {
   FinalTextContainer,
   FinalTitle,
   InitialPart,
+  Results,
   Search,
   SearchArea,
   SectionContainer,
@@ -24,18 +25,84 @@ import {
   SubSection,
   SubSectionContainer,
   SubSectionTitle,
+  SuggestionContainer,
+  SuggestionImage,
+  SuggestionTitle,
   Title,
 } from "../../styles/pages/content";
 import finalAnime from "../../assets/images/final/anime-final.png";
 import finalManga from "../../assets/images/final/manga-final.png";
 import Footer from "../../components/Footer";
 import handleScrollEvent from "../../services/scripts/scrollEvent";
+import {
+  getAnime,
+  getAnimesByFilter,
+  getManga,
+  getMangasByFilter,
+} from "../../services/animeAPI";
+const cache = {};
 
 export default function Content({ type, secondPage, title }) {
   const [content, setContent] = useState([]); // Estado para os cards dos animes
   const [selectedLetter, setSelectedLetter] = useState(""); // Estado para selecionar as letras
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  // Estados para a barra de pesquisa
+  const [search, setSearch] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
+  const [focused, setFocused] = useState(false);
+
+  // Funções para a pesquisa
+  // Buscar os animes
+  const fetchSuggestions = async (input) => {
+    const cachedResult = cache[input];
+    if (cachedResult) {
+      return cachedResult;
+    }
+
+    try {
+      const response =
+        type === "anime"
+          ? await getAnimesByFilter(`filter[text]=${input}`)
+          : await getMangasByFilter(`filter[text]=${input}`);
+
+      cache[input] = response.data;
+
+      return response.data;
+    } catch (error) {
+      console.error("Erro ao buscar conteúdo. ", error);
+      return [];
+    }
+  };
+
+  // Evento onChange do input
+  const handleSearchChange = async (event) => {
+    const input = event.target.value.trim();
+    setSearch(input);
+
+    if (input.length > 2) {
+      setLoading(true);
+
+      let allSuggestions = [];
+      allSuggestions = await fetchSuggestions(input);
+
+      setSuggestions(allSuggestions);
+
+      setLoading(false);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  // Ir para as informações do anime ao clicar em um dos cards
+  const handleSearchClick = (id) => {
+    type === "anime" ? navigate(`/anime/${id}`) : navigate(`/manga/${id}`);
+  };
+
+  // Foque e desfoque do input da pesquisa
+  const handleFocus = () => setFocused(true);
+  const handleBlur = () => setTimeout(() => setFocused(false), 200);
 
   return (
     <Container id="start">
@@ -45,15 +112,50 @@ export default function Content({ type, secondPage, title }) {
         <Title>{title}</Title>
 
         <ButtonContainer>
-          <Button text={"Mais populares"} onClick={() => handleScrollEvent("#pop")} />
-          <Button text={`${title} da temporada`} onClick={() => handleScrollEvent("#temp")} />
+          <Button
+            text={"Mais populares"}
+            onClick={() => handleScrollEvent("#pop")}
+          />
+          <Button
+            text={`${title} da temporada`}
+            onClick={() => handleScrollEvent("#temp")}
+          />
           <Button text={"Gêneros"} onClick={() => handleScrollEvent("#gen")} />
-          <Button text={"Ordem alfabética"} onClick={() => handleScrollEvent("#alf")} />
+          <Button
+            text={"Ordem alfabética"}
+            onClick={() => handleScrollEvent("#alf")}
+          />
         </ButtonContainer>
       </InitialPart>
 
       <SearchArea>
-        <Search placeholder="Pesquisar" />
+        <Search
+          placeholder="Pesquisar"
+          value={search}
+          onChange={handleSearchChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+        />
+
+        {focused && suggestions.length > 0 && (
+          <Results className="results">
+            {suggestions.map((content) => (
+              <SuggestionContainer
+                key={content.id}
+                onClick={() => handleSearchClick(content.id)}
+              >
+                <SuggestionImage
+                  src={content.attributes.posterImage?.original}
+                />
+
+                <SuggestionTitle>
+                  {content.attributes.canonicalTitle}
+                </SuggestionTitle>
+              </SuggestionContainer>
+            ))}
+          </Results>
+        )}
+
         <HiSearch
           style={{ position: "absolute", top: 12, left: 15 }}
           size={25}

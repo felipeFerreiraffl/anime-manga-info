@@ -59,6 +59,56 @@ export const Search = styled.input`
   }
 `;
 
+export const Results = styled.div`
+  position: absolute;
+  top: 55px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  z-index: 10;
+  background-color: ${colors.auxiliary.pp1000};
+  width: 100%;
+  padding: 1rem 0.625rem;
+  border-radius: 5px;
+  max-height: 18rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+`;
+
+export const SuggestionContainer = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  width: calc(100% - 0.625rem);
+  padding: 0.375rem;
+  border-radius: 5px;
+  background-color: ${colors.auxiliary.pp500};
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+  z-index: 20;
+
+  &:hover {
+    background-color: ${colors.main.pk1000};
+  }
+`;
+
+export const SuggestionImage = styled.img`
+  width: 3rem;
+  aspect-ratio: 48 / 67;
+  border-radius: 2px;
+`;
+
+export const SuggestionTitle = styled.p`
+  font: ${fonts.detail.dtl14};
+  color: ${colors.neutral.nt0};
+`;
+
+export const SuggestionError = styled.p`
+  font: ${fonts.detail.dtl20};
+  color: ${colors.neutral.nt0};
+`;
+
 export const SectionContainer = styled.div`
   display: flex;
   flex-direction: column;
