@@ -27,7 +27,7 @@ export default function GenderSlider({ type }) {
     <GenderArea>
       {showPrevButton && (
         <GenderButton onClick={() => swiper?.slidePrev()}>
-          <HiArrowCircleLeft size={81} color={colors.main.pk600} />
+          <HiArrowCircleLeft className="button" color={colors.main.pk600} />
         </GenderButton>
       )}
 
@@ -60,7 +60,7 @@ export default function GenderSlider({ type }) {
 
       {showNextButton && (
         <GenderButton onClick={() => swiper?.slideNext()}>
-          <HiArrowCircleRight size={81} color={colors.main.pk600} />
+          <HiArrowCircleRight className="button" color={colors.main.pk600} />
         </GenderButton>
       )}
     </GenderArea>

@@ -15,13 +15,22 @@ export const InitialPart = styled.div`
   align-items: flex-start;
   margin-top: 5.625rem; // 90px
   border-bottom: solid 2px ${colors.main.pk600};
-  padding-bottom: 52px;
+  padding-bottom: 3.25rem; // 52px
   width: 80%;
+
+  @media (max-width: 430px) {
+    margin-top: 6.3125rem; // 101px
+    padding-bottom: 1.5625rem; // 25px;
+  }
 `;
 
 export const Title = styled.h1`
   font: ${fonts.title.ttl96};
   color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.title.ttl40};
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -29,6 +38,11 @@ export const ButtonContainer = styled.div`
   align-items: center;
   margin-top: 2.3125rem; // 37px
   gap: 1.125rem; // 18px
+
+  @media (max-width: 430px) {
+    margin-top: 0.9375rem; // 15px
+    gap: 0.3125rem; // 5px
+  }
 `;
 
 export const SearchArea = styled.div`
@@ -36,13 +50,33 @@ export const SearchArea = styled.div`
   margin-top: 3.75rem; // 60px
   border: solid 2px ${colors.main.pk1000};
   border-radius: 20px;
-  padding: 12px 108px;
+  padding: 0.75rem 6.75rem; // 12px 108px
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
   position: relative;
   transition: 0.3s ease-in-out;
+
+  .search {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 15px;
+    font-size: 25px;
+  }
+
+  @media (max-width: 430px) {
+    margin-top: 2.8125rem; // 45px
+    padding: 0.5rem 3.125rem; // 8px 50px
+
+    .search {
+      font-size: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10px;
+    }
+  }
 `;
 
 export const Search = styled.input`
@@ -56,6 +90,14 @@ export const Search = styled.input`
   &::placeholder {
     font: ${fonts.detail.dtl20};
     color: ${colors.neutral.nt500};
+  }
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl12};
+
+    &::placeholder {
+      font: ${fonts.detail.dtl12};
+    }
   }
 `;
 
@@ -74,6 +116,11 @@ export const Results = styled.div`
   max-height: 18rem;
   overflow-x: hidden;
   overflow-y: scroll;
+
+  @media (max-width: 430px) {
+    top: 40px;
+    max-height: 16.5rem;
+  }
 `;
 
 export const SuggestionContainer = styled.div`
@@ -107,6 +154,10 @@ export const SuggestionTitle = styled.p`
 export const SuggestionError = styled.p`
   font: ${fonts.detail.dtl20};
   color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl12};
+  }
 `;
 
 export const SectionContainer = styled.div`
@@ -134,6 +185,10 @@ export const SectionContainer = styled.div`
     cursor: pointer;
     transition: 0.3s ease-in-out;
   }
+
+  @media (max-width: 430px) {
+    margin-top: 3.125rem; // 50px
+  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -142,6 +197,10 @@ export const SectionTitle = styled.h2`
   border-bottom: solid 2px ${colors.main.pk600};
   padding-bottom: 0.625rem;
   width: 100%;
+
+  @media (max-width: 430px) {
+    font: ${fonts.title.ttl32};
+  }
 `;
 
 export const SubSection = styled.div`
@@ -151,6 +210,11 @@ export const SubSection = styled.div`
   margin-top: 2.3125rem; // 37px
   gap: 1.5625rem; // 25px
   width: 100%;
+
+  @media (max-width: 430px) {
+    margin-top: 1.25rem; // 20px
+    gap: 0.9375rem; // 15px
+  }
 `;
 
 export const SubSectionContainer = styled.div`
@@ -163,6 +227,10 @@ export const SubSectionContainer = styled.div`
 export const SubSectionTitle = styled.h3`
   font: ${fonts.detail.dtl48};
   color: ${colors.main.pk400};
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl20};
+  }
 `;
 
 export const ContentCardContainer = styled.div`
@@ -197,11 +265,21 @@ export const FinalContainer = styled.div`
   border-top: solid 2px ${colors.main.pk600};
   padding-top: 4.25rem; // 68px
   gap: 7.1875rem; // 115px
+
+  @media (max-width: 430px) {
+    margin-top: 2.1875rem; // 35px
+    padding-top: 2.1875rem;
+    gap: 0.4375rem; // 7px
+  }
 `;
 
 export const FinalImage = styled.img`
   width: 24.9375rem; // 399px
   aspect-ratio: 1 / 1;
+
+  @media (max-width: 430px) {
+    width: 8.625rem; // 138px
+  }
 `;
 
 export const FinalTextContainer = styled.div`
@@ -209,11 +287,19 @@ export const FinalTextContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 3.75rem; // 60px
+
+  @media (max-width: 430px) {
+    gap: 1.25rem;
+  }
 `;
 
 export const FinalTitle = styled.h1`
   font: ${fonts.title.ttl64};
   color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.title.ttl24};
+  }
 `;
 
 export const FinalContentContainer = styled.div`
@@ -221,15 +307,27 @@ export const FinalContentContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1.375rem; // 22px
+
+  @media (max-width: 430px) {
+    gap: 0.625rem;
+  }
 `;
 
 export const FinalContentTitle = styled.h2`
   font: ${fonts.detail.dtl40};
   color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl16};
+  }
 `;
 
 export const FinalButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.9375rem; // 15px
+
+  @media (max-width: 430px) {
+    gap: 0.625rem; // 10px
+  }
 `;

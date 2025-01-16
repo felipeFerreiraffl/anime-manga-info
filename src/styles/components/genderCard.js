@@ -7,7 +7,7 @@ export const Card = styled.div`
   align-items: center;
   justify-content: center;
   width: 12.8125rem; // 205px
-  height: 12.8125rem;
+  aspect-ratio: 1 / 1;
   position: relative;
   cursor: pointer;
 
@@ -32,10 +32,18 @@ export const Card = styled.div`
   &:hover::before {
     opacity: 0.65;
   }
+
+  @media (max-width: 430px) {
+    width: 3.5625rem; // 57px
+  }
 `;
 
 export const Gender = styled.p`
   font: ${fonts.detail.dtl40};
   color: ${colors.neutral.nt0};
   z-index: 10;
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl12};
+  }
 `;

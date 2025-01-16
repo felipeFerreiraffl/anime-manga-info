@@ -1,11 +1,19 @@
 import { useState } from "react";
 import { HiSearch } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import finalAnime from "../../assets/images/final/anime-final.png";
+import finalManga from "../../assets/images/final/manga-final.png";
 import Alphabet from "../../components/Alphabet";
 import Button from "../../components/Button";
+import Footer from "../../components/Footer";
 import GenderSlider from "../../components/GenderSlider";
 import Header from "../../components/Header";
 import SliderContent from "../../components/Slider";
+import {
+  getAnimesByFilter,
+  getMangasByFilter
+} from "../../services/animeAPI";
+import handleScrollEvent from "../../services/scripts/scrollEvent";
 import {
   ButtonContainer,
   Container,
@@ -31,16 +39,6 @@ import {
   SuggestionTitle,
   Title,
 } from "../../styles/pages/content";
-import finalAnime from "../../assets/images/final/anime-final.png";
-import finalManga from "../../assets/images/final/manga-final.png";
-import Footer from "../../components/Footer";
-import handleScrollEvent from "../../services/scripts/scrollEvent";
-import {
-  getAnime,
-  getAnimesByFilter,
-  getManga,
-  getMangasByFilter,
-} from "../../services/animeAPI";
 const cache = {};
 
 export default function Content({ type, secondPage, title }) {
@@ -161,10 +159,7 @@ export default function Content({ type, secondPage, title }) {
           </Results>
         )}
 
-        <HiSearch
-          style={{ position: "absolute", top: 12, left: 15 }}
-          size={25}
-        />
+        <HiSearch className="search" />
       </SearchArea>
 
       <SectionContainer id="pop">

@@ -8,6 +8,10 @@ export const Container = styled.div`
   align-items: center;
   margin-top: 2.8125rem; // 45px
   gap: 13.125rem; // 210px
+
+  @media (max-width: 430px) {
+      gap: 5.3125rem; // 85px
+  }
 `;
 
 export const HomeContainer = styled.div`
@@ -18,13 +22,16 @@ export const HomeContainer = styled.div`
 `;
 
 export const Logo = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 2rem;
   aspect-ratio: 1 / 1;
   transition: 0.3s ease-in-out;
 
   &:hover {
     filter: brightness(1.5);
+  }
+
+  @media (max-width: 430px) {
+    width: 1.125rem; // 18px
   }
 `;
 
@@ -36,5 +43,10 @@ export const PageText = styled.p`
 
   &:hover {
     color: ${colors.main.pk600};
+  }
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl14};
+    color: ${colors.main.pk1000};
   }
 `;

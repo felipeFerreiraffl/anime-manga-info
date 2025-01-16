@@ -19,9 +19,18 @@ export const Card = styled.div`
   .focused {
     background: ${colors.main.pk400};
   }
+
+  @media (max-width: 430px) {
+    width: 0.9375rem; // 15px
+  }
 `;
 
 export const Letter = styled.p`
   font: ${fonts.detail.dtl20};
   color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl10};
+  }
 `;
+

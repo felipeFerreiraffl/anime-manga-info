@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { SliderButton } from "../components/slider";
 
 export const GenderArea = styled.div`
-  margin-top: 1.75rem; // 18px
+  margin-top: 1.75rem; // 28px
   position: relative;
   display: flex;
   align-items: center;
@@ -12,6 +11,19 @@ export const GenderArea = styled.div`
   .swiper-container {
     width: 100%;
     height: 100%;
+  }
+
+  .button {
+    font-size: 81px;
+  }
+
+  @media (max-width: 430px) {
+    margin-top: 1.25rem;
+    gap: 0.625rem;
+
+    .button {
+      font-size: 18px;
+    }
   }
 `;
 

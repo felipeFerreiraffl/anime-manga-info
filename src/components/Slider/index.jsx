@@ -73,7 +73,7 @@ export default function SliderContent({
     <SliderArea>
       {showPrevButton && (
         <SliderButton onClick={() => swiper?.slidePrev()}>
-          <HiArrowCircleLeft size={81} color={colors.main.pk600} />
+          <HiArrowCircleLeft className="button" color={colors.main.pk600} />
         </SliderButton>
       )}
 
@@ -133,7 +133,7 @@ export default function SliderContent({
 
       {showNextButton && (
         <SliderButton onClick={() => swiper?.slideNext()}>
-          <HiArrowCircleRight size={81} color={colors.main.pk600} />
+          <HiArrowCircleRight className="button" color={colors.main.pk600} />
         </SliderButton>
       )}
     </SliderArea>

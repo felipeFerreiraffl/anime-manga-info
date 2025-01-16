@@ -3,7 +3,7 @@ import fonts from "../fonts/fonts";
 import colors from "../colors/colors";
 
 export const SliderArea = styled.div`
-  margin-top: 1.75rem; // 18px
+  margin-top: 1.75rem; // 28px
   position: relative;
   display: flex;
   align-items: center;
@@ -14,6 +14,19 @@ export const SliderArea = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  .button {
+    font-size: 81px;
+  }
+
+  @media (max-width: 430px) {
+    margin-top: 1.25rem;
+    gap: 0.8125rem; // 13px
+
+    .button {
+      font-size: 18px;
+    }
+  }
 `;
 
 export const Object = styled.div`
@@ -21,33 +34,47 @@ export const Object = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 0.625rem;
+
+  @media (max-width: 430px) {
+    gap: 0.4375rem; // 7px
+  }
 `;
 
 export const ImageContainer = styled.div`
   position: relative;
   max-width: 12.5625rem; // 201px
-  height: 17.625rem; // 282px
-  /* aspect-ratio: 67 / 94; */
+  aspect-ratio: 67 / 94;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover .overlay {
     opacity: 1;
   }
+
+  @media (max-width: 430px) {
+    max-width: 3.625rem; // 58px
+  }
 `;
 
 export const Image = styled.img`
   max-width: 12.5625rem; // 201px
-  height: 17.625rem; // 282px
-  /* aspect-ratio: 67 / 94; */
+  aspect-ratio: 67 / 94;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.3s ease-in-out;
+
+  @media (max-width: 430px) {
+    max-width: 3.625rem; // 58px
+  }
 `;
 
 export const Ranking = styled.p`
   font: ${fonts.detail.dtl40};
   color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl14};
+  }
 `;
 
 export const ImageHover = styled.div`
@@ -68,6 +95,10 @@ export const ContentName = styled.p`
   font: ${fonts.detail.dtl20};
   color: ${colors.neutral.nt0};
   text-align: center;
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl12};
+  }
 `;
 
 export const SliderButton = styled.button`
@@ -87,12 +118,20 @@ export const LoadingImage = styled.div`
   align-items: center;
   justify-content: center;
   background-color: ${colors.neutral.nt500};
-  max-width: 201px;
-  height: 282px;
+  max-width: 12.5625rem; // 201px
+  aspect-ratio: 67 / 94;
   border-radius: 5px;
+
+  @media (max-width: 430px) {
+    max-width: 3.625rem; // 58px
+  }
 `;
 
 export const LoadingText = styled.p`
   font: ${fonts.detail.dtl40};
   color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl14};
+  }
 `;
