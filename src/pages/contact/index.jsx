@@ -42,9 +42,9 @@ export default function Contacts() {
             <HiLink className="link-icn" color={colors.main.pk800} />
 
             <LinksTextContainer>
-              <LinkText href="">Github</LinkText>
-              <LinkText href="">Linkedin</LinkText>
-              <LinkText href="">Instagram</LinkText>
+              <LinkText href="https://github.com/felipeFerreiraffl">Github</LinkText>
+              <LinkText href="https://www.linkedin.com/in/felipe-ferreira-959bb8271/">Linkedin</LinkText>
+              <LinkText href="https://www.instagram.com/felipe_ffl7/">Instagram</LinkText>
             </LinksTextContainer>
           </LinksContainer>
         </InfosContainer>
