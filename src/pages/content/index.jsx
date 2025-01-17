@@ -105,7 +105,7 @@ export default function Content({ type, secondPage, title }) {
 
   return (
     <Container id="start">
-      <Header secondPage={secondPage} />
+      <Header secondPage={secondPage} thirdPage={"Contatos"} />
 
       <InitialPart>
         <Title>{title}</Title>

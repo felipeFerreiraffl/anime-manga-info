@@ -53,7 +53,7 @@ export default function Detail({ type, secondPage }) {
 
   return (
     <Container>
-      <Header secondPage={secondPage} />
+      <Header secondPage={secondPage} thirdPage={"Contatos"} />
 
       <BackButton
         onClick={() =>
