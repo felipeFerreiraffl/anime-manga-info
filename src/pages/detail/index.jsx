@@ -24,6 +24,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Footer from "../../components/Footer";
 import { useEffect, useState } from "react";
 import { getAnime, getManga } from "../../services/animeAPI";
+import handleRatingColor from "../../services/scripts/ratingColor";
 
 export default function Detail({ type, secondPage }) {
   const { id } = useParams();
@@ -92,10 +93,16 @@ export default function Detail({ type, secondPage }) {
 
               <ContentRatingContainer>
                 <ContentRating>
-                  {content.attributes.averageRating}
+                  {content.attributes?.averageRating || "?" }
                 </ContentRating>
 
-                <ContentRatingColor />
+                <ContentRatingColor
+                  style={{
+                    backgroundColor: handleRatingColor(
+                      content.attributes.averageRating
+                    ),
+                  }}
+                />
               </ContentRatingContainer>
             </ContentTextContainer>
           </InitialDetails>
@@ -120,12 +127,15 @@ export default function Detail({ type, secondPage }) {
                   <InfosText>
                     Episódios: {content.attributes.episodeCount || "?"}
                   </InfosText>
-                  <InfosText>Status: {content.attributes.status || "?"}</InfosText>
+                  <InfosText>
+                    Status: {content.attributes.status || "?"}
+                  </InfosText>
                   <InfosText>
                     Idade indicativa: {content.attributes.ageRating || "?"}
                   </InfosText>
                   <InfosText>
-                    Ranking de popularidade: {content.attributes.popularityRank || "?"}
+                    Ranking de popularidade:{" "}
+                    {content.attributes.popularityRank || "?"}
                   </InfosText>
                   <InfosText>
                     Ranking de avaliação: {content.attributes.ratingRank || "?"}
@@ -145,12 +155,15 @@ export default function Detail({ type, secondPage }) {
                   <InfosText>
                     Serialização: {content.attributes.serialization || "?"}
                   </InfosText>
-                  <InfosText>Status: {content.attributes.status || "?"}</InfosText>
+                  <InfosText>
+                    Status: {content.attributes.status || "?"}
+                  </InfosText>
                   <InfosText>
                     Idade indicativa: {content.attributes.ageRating || "?"}
                   </InfosText>
                   <InfosText>
-                    Ranking de popularidade: {content.attributes.popularityRank || "?"}
+                    Ranking de popularidade:{" "}
+                    {content.attributes.popularityRank || "?"}
                   </InfosText>
                   <InfosText>
                     Ranking de avaliação: {content.attributes.ratingRank || "?"}

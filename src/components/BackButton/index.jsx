@@ -5,7 +5,7 @@ import colors from "../../styles/colors/colors";
 export default function BackButton({ onClick }) {
  return (
    <Container onClick={onClick}>
-    <HiArrowCircleLeft size={24} color={colors.main.pk1000} />
+    <HiArrowCircleLeft className="back-btn" color={colors.main.pk1000} />
 
     <BackText>Voltar</BackText>
    </Container>

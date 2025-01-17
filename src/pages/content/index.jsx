@@ -192,7 +192,7 @@ export default function Content({ type, secondPage, title }) {
 
             <SliderContent
               type={type}
-              filter={"sort=-startDate"}
+              filter={"sort=-startDate&filter[status]=current"}
               contentLength={20}
             />
           </SubSectionContainer>

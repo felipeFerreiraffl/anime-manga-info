@@ -119,7 +119,7 @@ export default function SliderContent({
                   </ImageHover>
                 </ImageContainer>
                 <Ranking>
-                  {filter !== "sort=-startDate"
+                  {filter !== "sort=-startDate&filter[status]=current"
                     ? `${i + 1}º ${separator} ${
                         content.attributes.averageRating
                       }`
