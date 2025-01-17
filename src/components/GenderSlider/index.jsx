@@ -47,7 +47,7 @@ export default function GenderSlider({ type }) {
           <SwiperSlide key={image.id}>
             <GenderCard
               onClick={() =>
-                type === "anime"
+                type === "animes"
                   ? navigate(`/animes/genero/${image.page}`)
                   : navigate(`/mangas/genero/${image.page}`)
               }

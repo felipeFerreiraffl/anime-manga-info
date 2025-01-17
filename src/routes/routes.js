@@ -1,17 +1,17 @@
 import { Route, Routes } from "react-router-dom";
-import Content from "../pages/content";
-import Home from "../pages/home";
-import Detail from "../pages/detail";
 import Contacts from "../pages/contact";
+import Content from "../pages/content";
+import Detail from "../pages/detail";
+import Genre from "../pages/gender";
+import Home from "../pages/home";
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/animes" element={<Content type={"anime"} secondPage={"Mangás"} title={"Animes"} />} />
-      <Route path="/mangas" element={<Content type={"manga"} secondPage={"Animes"} title={"Mangás"} />} />
-      <Route path="/anime/:id" element={<Detail type={"anime"} secondPage={"Mangás"} />} />
-      <Route path="/manga/:id" element={<Detail type={"manga"} secondPage={"Animes"} />} />
+      <Route path="/:type" element={<Content />} />
+      <Route path="/:type/:id" element={<Detail />} />
+      <Route path="/:type/:genre" element={<Genre />} />
       <Route path="/contatos" element={<Contacts />} />
     </Routes>
   );

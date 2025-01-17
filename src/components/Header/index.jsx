@@ -7,7 +7,7 @@ import {
 import logo from "../../assets/logos/symbol-jap.svg";
 import { useNavigate } from "react-router-dom";
 
-export default function Header({ id, secondPage, thirdPage }) {
+export default function Header({ secondPage, thirdPage }) {
   const navigate = useNavigate();
 
   const handleContactPage = () => {
@@ -18,10 +18,10 @@ export default function Header({ id, secondPage, thirdPage }) {
     } else {
       navigate("/mangas");
     }
-  }
+  };
 
   return (
-    <Container id={id}>
+    <Container>
       <HomeContainer onClick={() => navigate("/")}>
         <Logo src={logo} alt="Logo" />
         <PageText>Home</PageText>

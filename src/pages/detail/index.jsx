@@ -26,8 +26,8 @@ import { useEffect, useState } from "react";
 import { getAnime, getManga } from "../../services/animeAPI";
 import handleRatingColor from "../../services/scripts/ratingColor";
 
-export default function Detail({ type, secondPage }) {
-  const { id } = useParams();
+export default function Detail() {
+  const { type, id } = useParams();
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ export default function Detail({ type, secondPage }) {
 
   return (
     <Container>
-      <Header secondPage={secondPage} thirdPage={"Contatos"} />
+      <Header secondPage={type === "anime" ? "Mangás" : "Animes"} thirdPage={"Contatos"} />
 
       <BackButton
         onClick={() =>
@@ -84,7 +84,7 @@ export default function Detail({ type, secondPage }) {
 
               <ContentTitleContainer>
                 <ContentAltTitle>
-                  {content.attributes.titles.en_jp}
+                  {content.attributes.titles.en}
                 </ContentAltTitle>
                 <ContentAltTitle>
                   {content.attributes.titles.ja_jp}

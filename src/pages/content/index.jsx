@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { HiSearch } from "react-icons/hi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import finalAnime from "../../assets/images/final/anime-final.png";
 import finalManga from "../../assets/images/final/manga-final.png";
 import Alphabet from "../../components/Alphabet";
@@ -9,10 +9,7 @@ import Footer from "../../components/Footer";
 import GenderSlider from "../../components/GenderSlider";
 import Header from "../../components/Header";
 import SliderContent from "../../components/Slider";
-import {
-  getAnimesByFilter,
-  getMangasByFilter
-} from "../../services/animeAPI";
+import { getAnimesByFilter, getMangasByFilter } from "../../services/animeAPI";
 import handleScrollEvent from "../../services/scripts/scrollEvent";
 import {
   ButtonContainer,
@@ -41,7 +38,9 @@ import {
 } from "../../styles/pages/content";
 const cache = {};
 
-export default function Content({ type, secondPage, title }) {
+export default function Content() {
+  const { type } = useParams();
+
   const [content, setContent] = useState([]); // Estado para os cards dos animes
   const [selectedLetter, setSelectedLetter] = useState(""); // Estado para selecionar as letras
   const [loading, setLoading] = useState(true);
@@ -77,7 +76,7 @@ export default function Content({ type, secondPage, title }) {
 
   // Evento onChange do input
   const handleSearchChange = async (event) => {
-    const input = event.target.value.trim();
+    const input = event.target.value;
     setSearch(input);
 
     if (input.length > 2) {
@@ -105,18 +104,22 @@ export default function Content({ type, secondPage, title }) {
 
   return (
     <Container id="start">
-      <Header secondPage={secondPage} thirdPage={"Contatos"} />
+      <Header
+        secondPage={type === "animes" ? "Mangás" : "Animes"}
+        thirdPage={"Contatos"}
+      />
 
       <InitialPart>
-        <Title>{title}</Title>
+        <Title>{type === "animes" ? "Animes" : "Mangás"}</Title>
 
         <ButtonContainer>
           <Button
             text={"Mais populares"}
             onClick={() => handleScrollEvent("#pop")}
           />
+          <Button text={"Melhores"} onClick={() => handleScrollEvent("#mel")} />
           <Button
-            text={`${title} da temporada`}
+            text={`${type === "animes" ? "Animes" : "Mangás"} da temporada`}
             onClick={() => handleScrollEvent("#temp")}
           />
           <Button text={"Gêneros"} onClick={() => handleScrollEvent("#gen")} />
@@ -165,22 +168,35 @@ export default function Content({ type, secondPage, title }) {
       <SectionContainer id="pop">
         <SectionTitle>Mais populares</SectionTitle>
         <SliderContent
-          type={type}
+          type={type === "animes" ? "anime" : "manga"}
           separator={"-"}
           filter={"sort=popularityRank"}
           contentLength={10}
         />
       </SectionContainer>
 
+      <SectionContainer id="mel">
+        <SectionTitle>Melhores</SectionTitle>
+
+        <SliderContent
+          type={type === "animes" ? "anime" : "manga"}
+          separator={"-"}
+          filter={"sort=ratingRank"}
+          contentLength={10}
+        />
+      </SectionContainer>
+
       <SectionContainer id="temp">
-        <SectionTitle>{title} da temporada</SectionTitle>
+        <SectionTitle>
+          {type === "animes" ? "Animes" : "Mangás"} da temporada
+        </SectionTitle>
 
         <SubSection>
           <SubSectionContainer>
             <SubSectionTitle>Melhores avaliados</SubSectionTitle>
 
             <SliderContent
-              type={type}
+              type={type === "animes" ? "anime" : "manga"}
               separator={"-"}
               filter={"sort=-averageRating&filter[status]=current"}
               contentLength={10}
@@ -191,7 +207,7 @@ export default function Content({ type, secondPage, title }) {
             <SubSectionTitle>Recentes</SubSectionTitle>
 
             <SliderContent
-              type={type}
+              type={type === "animes" ? "anime" : "manga"}
               filter={"sort=-startDate&filter[status]=current"}
               contentLength={20}
             />
@@ -216,9 +232,9 @@ export default function Content({ type, secondPage, title }) {
 
       <FinalContainer>
         <FinalImage
-          src={type === "anime" ? finalAnime : finalManga}
+          src={type === "animes" ? finalAnime : finalManga}
           alt={
-            type === "anime"
+            type === "animes"
               ? "Marin Kitagawa (Sono Bisque)"
               : "Nami (One Piece)"
           }
@@ -236,9 +252,9 @@ export default function Content({ type, secondPage, title }) {
                 onClick={() => handleScrollEvent("#start")}
               />
               <Button
-                text={type === "anime" ? "Mangás" : "Animes"}
+                text={type === "animes" ? "Mangás" : "Animes"}
                 onClick={() =>
-                  type === "anime" ? navigate("/mangas") : navigate("/animes")
+                  type === "animes" ? navigate("/mangas") : navigate("/animes")
                 }
               />
               <Button text={"Contatos"} onClick={() => navigate("/contatos")} />
