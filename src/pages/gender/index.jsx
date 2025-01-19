@@ -1,24 +1,27 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import acao from "../../assets/images/gender/presentation/action.png";
+import comedia from "../../assets/images/gender/presentation/comedy.png";
+import drama from "../../assets/images/gender/presentation/drama.png";
+import horror from "../../assets/images/gender/presentation/horror.png";
+import misterio from "../../assets/images/gender/presentation/mystery.png";
+import romance from "../../assets/images/gender/presentation/romance.png";
+import scifi from "../../assets/images/gender/presentation/sci-fi.png";
+import esportes from "../../assets/images/gender/presentation/sports.png";
+import BackButton from "../../components/BackButton";
+import Footer from "../../components/Footer";
+import Header from "../../components/Header";
+import { getAnimesByFilter, getMangasByFilter } from "../../services/animeAPI";
 import {
   Container,
+  ContentContainer,
   GenderImage,
   GenderPhrase,
   GenderTitle,
   PresentationContainer,
   PresentationTextContainer,
 } from "../../styles/pages/gender";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import { useNavigate, useParams } from "react-router-dom";
-import BackButton from "../../components/BackButton";
-import { useEffect, useState } from "react";
-import acao from "../../assets/images/gender/presentation/action.png";
-import comedia from "../../assets/images/gender/presentation/comedy.png";
-import drama from "../../assets/images/gender/presentation/drama.png";
-import esportes from "../../assets/images/gender/presentation/sports.png";
-import horror from "../../assets/images/gender/presentation/horror.png";
-import misterio from "../../assets/images/gender/presentation/mystery.png";
-import romance from "../../assets/images/gender/presentation/romance.png";
-import scifi from "../../assets/images/gender/presentation/sci-fi.png";
+import ContentCard from "../../components/ContentCard";
 
 export default function Genre() {
   const { type, genre } = useParams();
@@ -28,6 +31,70 @@ export default function Genre() {
     explanation: "",
     image: "",
   });
+  const [genreName, setGenreName] = useState("");
+  const [content, setContent] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    switch (genre) {
+      case "acao":
+        setGenreName("action");
+        break;
+
+      case "comedia":
+        setGenreName("comedy");
+        break;
+
+      case "drama":
+        setGenreName("drama");
+        break;
+
+      case "esportes":
+        setGenreName("sports");
+        break;
+
+      case "horror":
+        setGenreName("horror");
+        break;
+
+      case "misterio":
+        setGenreName("mystery");
+        break;
+
+      case "romance":
+        setGenreName("romance");
+        break;
+
+      case "scifi":
+        setGenreName("scifi");
+        break;
+
+      default:
+        setGenreName("");
+        break;
+    }
+
+    const fetchContent = async () => {
+      setLoading(true);
+
+      try {
+        const response =
+          type === "animes"
+            ? await getAnimesByFilter(`filter[genres]=${genreName}`)
+            : await getMangasByFilter(`filter[genres]=${genreName}`);
+
+        console.log("Animes: ", response.data);
+
+        setContent(response.data);
+      } catch (error) {
+        console.error("Erro ao buscar conteúdo por gênero. ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchContent();
+  }, [genreName, type]);
 
   useEffect(() => {
     const handleInfos = () => {
@@ -59,7 +126,7 @@ export default function Genre() {
         case "esportes":
           setGenreObj({
             title: "Esportes",
-            explanation: "Lembre-se de fazer exercícios depois desses animes",
+            explanation: "Lembre-se de fazer exercícios depois desses animes.",
             image: esportes,
           });
           break;
@@ -131,6 +198,22 @@ export default function Genre() {
 
         <GenderImage src={genreObj.image} alt={genreObj.title} />
       </PresentationContainer>
+
+      <ContentContainer>
+        {content.map((cont) => (
+          <ContentCard
+            key={cont.id}
+            title={cont.attributes.canonicalTitle}
+            japTitle={cont.attributes.titles.ja_jp}
+            image={cont.attributes.posterImage?.original}
+            onClick={() =>
+              type === "animes"
+                ? navigate(`/anime/${cont.id}`)
+                : navigate(`/manga/${cont.id}`)
+            }
+          />
+        ))}
+      </ContentContainer>
 
       <Footer />
     </Container>

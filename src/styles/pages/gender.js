@@ -41,3 +41,12 @@ export const GenderPhrase = styled.p`
 export const GenderImage = styled.img`
   height: 23.0625rem;
 `;
+
+export const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem; // 20px
+  margin-top: 6.25rem; // 100px
+  width: 80%;
+`;

@@ -53,7 +53,10 @@ export default function Detail() {
 
   return (
     <Container>
-      <Header secondPage={type === "anime" ? "Mangás" : "Animes"} thirdPage={"Contatos"} />
+      <Header
+        secondPage={type === "anime" ? "Mangás" : "Animes"}
+        thirdPage={"Contatos"}
+      />
 
       <BackButton
         onClick={() =>
@@ -93,7 +96,7 @@ export default function Detail() {
 
               <ContentRatingContainer>
                 <ContentRating>
-                  {content.attributes?.averageRating || "?" }
+                  {content.attributes?.averageRating || "?"}
                 </ContentRating>
 
                 <ContentRatingColor
