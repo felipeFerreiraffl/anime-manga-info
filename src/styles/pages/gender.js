@@ -8,6 +8,45 @@ export const Container = styled.div`
   align-items: center;
   height: 100%;
   background: ${colors.gradient.ppGrd};
+
+  .pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.9375rem; // 15px
+    margin-top: 3.125rem; // 50px
+    margin-bottom: 3.125rem;
+  }
+
+  .pagination li {
+    background-color: ${colors.main.pk800};
+    padding: 0.5rem 1.3125rem; // 8px 21px
+    border-radius: 5px;
+    font: ${fonts.title.ttl32};
+    color: ${colors.neutral.nt0};
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    width: 80%;
+  }
+
+  .pagination .active {
+    background-color: ${colors.main.pk400};
+  }
+
+  .pagination li:hover {
+    background-color: ${colors.main.pk400};
+  }
+
+  .pagination .prev,
+  .pagination .next {
+    background: transparent;
+    transition: 0.3s ease-in-out;
+  }
+
+  .pagination .prev:hover,
+  .pagination .next:hover {
+    background: transparent;
+    transform: scale(1.1);
+  }
 `;
 
 export const PresentationContainer = styled.div`
@@ -49,4 +88,13 @@ export const ContentContainer = styled.div`
   gap: 1.5rem; // 20px
   margin-top: 6.25rem; // 100px
   width: 80%;
+`;
+
+export const GenderLoading = styled.p`
+  font: ${fonts.detail.dtl36};
+  color: ${colors.neutral.nt0};
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl14};
+  }
 `;
