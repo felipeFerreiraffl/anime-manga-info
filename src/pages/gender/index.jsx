@@ -125,7 +125,7 @@ export default function Genre() {
     };
 
     fetchContent();
-  }, [genreName, type, currentPage]);
+  }, [genreName, type, currentPage, genre]);
 
   // Define os títulos, imagens e frases do componente inicial
   useEffect(() => {

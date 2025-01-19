@@ -49,7 +49,7 @@ export default function Detail() {
     };
 
     fetchContent();
-  }, []);
+  }, [id, type]);
 
   return (
     <Container>

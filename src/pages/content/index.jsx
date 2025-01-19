@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react";
 import { HiSearch } from "react-icons/hi";
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
+import ReactPaginate from "react-paginate";
 import { useNavigate, useParams } from "react-router-dom";
 import finalAnime from "../../assets/images/final/anime-final.png";
 import finalManga from "../../assets/images/final/manga-final.png";
 import Alphabet from "../../components/Alphabet";
 import Button from "../../components/Button";
+import ContentCard from "../../components/ContentCard";
 import Footer from "../../components/Footer";
 import GenderSlider from "../../components/GenderSlider";
 import Header from "../../components/Header";
 import SliderContent from "../../components/Slider";
 import { getAnimesByFilter, getMangasByFilter } from "../../services/animeAPI";
 import handleScrollEvent from "../../services/scripts/scrollEvent";
+import colors from "../../styles/colors/colors";
 import {
   ButtonContainer,
   Container,
@@ -39,10 +43,6 @@ import {
   SuggestionTitle,
   Title,
 } from "../../styles/pages/content";
-import ContentCard from "../../components/ContentCard";
-import ReactPaginate from "react-paginate";
-import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
-import colors from "../../styles/colors/colors";
 const cache = {};
 
 export default function Content() {
@@ -95,7 +95,7 @@ export default function Content() {
     if (selectedLetter) {
       fetchContentLetter(selectedLetter, currentPage);
     }
-  }, [selectedLetter, currentPage]);
+  }, [selectedLetter, currentPage]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Seleciona a letra e define o Paginate para 0
   const handleLetterClick = (letter) => {
@@ -104,7 +104,7 @@ export default function Content() {
   };
 
   const handlePageChange = ({ selected }) => {
-    if (selected != currentPage) {
+    if (selected !== currentPage) {
       setCurrentPage(selected);
     }
   };
