@@ -8,6 +8,7 @@ const fonts = {
     ttl24: `1.5rem 'League Gothic', sans-serif`,
     ttl20: `1.25rem 'League Gothic', sans-serif`,
     ttl16: `1rem 'League Gothic', sans-serif`,
+    ttl14: `0.75rem 'League Gothic', sans-serif`,
   },
   detail: {
     dtl64: "4rem 'Pathway Gothic One', sans-serif",

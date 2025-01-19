@@ -21,6 +21,7 @@ import {
   ContentContainer,
   GenderImage,
   GenderLoading,
+  GenderLoadingContainer,
   GenderPhrase,
   GenderTitle,
   PresentationContainer,
@@ -238,9 +239,9 @@ export default function Genre() {
       </PresentationContainer>
 
       {loading ? (
-        <ContentContainer>
+        <GenderLoadingContainer>
           <GenderLoading>Carregando...</GenderLoading>
-        </ContentContainer>
+        </GenderLoadingContainer>
       ) : (
         <ContentContainer>
           {content.map((cont) => (
