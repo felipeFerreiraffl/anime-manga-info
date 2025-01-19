@@ -276,7 +276,12 @@ export const ContentCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.25rem;
-  margin-top: 3.125rem; // 50px
+  margin-top: 3.125rem; // 
+  
+  @media (max-width: 430px) {
+    gap: 0.3125rem; // 5px
+    margin-top: 1.5625rem; // 25px
+  }
 `;
 
 export const ContentCardLoading = styled.div`
@@ -286,11 +291,20 @@ export const ContentCardLoading = styled.div`
   align-items: center;
   gap: 1.25rem;
   margin-top: 3.125rem; // 50px
+
+  @media (max-width: 430px) {
+    gap: 0.3125rem; // 5px
+    margin-top: 1.5625rem; // 25px
+  }
 `;
 
 export const ContentCardLoadingText = styled.p`
   font: ${fonts.detail.dtl40};
   color: ${colors.main.pk400};
+
+  @media (max-width: 430px) {
+    font: ${fonts.detail.dtl14};
+  }
 `;
 
 export const FinalContainer = styled.div`

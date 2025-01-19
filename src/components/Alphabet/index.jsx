@@ -1,3 +1,4 @@
+import { useState } from "react";
 import LetterCard from "../../components/LetterCard";
 import {
   AlphabetArea,
@@ -6,6 +7,8 @@ import {
 } from "../../styles/components/alphabet";
 
 export default function Alphabet({ onClick }) {
+  const [selectedLetter, setSelectedLetter] = useState(null);
+
   const alphabetic = [
     "#",
     "A",
@@ -36,17 +39,32 @@ export default function Alphabet({ onClick }) {
     "Z",
   ];
 
+  const handleLetterClick = (letter) => {
+    setSelectedLetter(letter);
+    onClick(letter);
+  };
+
   return (
     <AlphabetArea>
       <FirstLine>
         {alphabetic.slice(0, 14).map((letter, index) => (
-          <LetterCard key={index} letter={letter} onClick={() => onClick(letter)} />
+          <LetterCard
+            key={index}
+            letter={letter}
+            onClick={() => handleLetterClick(letter)}
+            isActive={selectedLetter === letter}
+          />
         ))}
       </FirstLine>
 
       <SecondLine>
         {alphabetic.slice(14).map((letter, index) => (
-          <LetterCard key={index} letter={letter} onClick={() => onClick(letter)} />
+          <LetterCard
+            key={index}
+            letter={letter}
+            onClick={() => handleLetterClick(letter)}
+            isActive={selectedLetter === letter}
+          />
         ))}
       </SecondLine>
     </AlphabetArea>
