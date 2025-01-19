@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiSearch } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 import finalAnime from "../../assets/images/final/anime-final.png";
@@ -14,6 +14,9 @@ import handleScrollEvent from "../../services/scripts/scrollEvent";
 import {
   ButtonContainer,
   Container,
+  ContentCardContainer,
+  ContentCardLoading,
+  ContentCardLoadingText,
   FinalButtonContainer,
   FinalContainer,
   FinalContentContainer,
@@ -36,23 +39,77 @@ import {
   SuggestionTitle,
   Title,
 } from "../../styles/pages/content";
+import ContentCard from "../../components/ContentCard";
+import ReactPaginate from "react-paginate";
+import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
+import colors from "../../styles/colors/colors";
 const cache = {};
 
 export default function Content() {
   const { type } = useParams();
+  const navigate = useNavigate();
 
   const [content, setContent] = useState([]); // Estado para os cards dos animes
-  const [selectedLetter, setSelectedLetter] = useState(""); // Estado para selecionar as letras
+  const [selectedLetter, setSelectedLetter] = useState(null); // Estado para selecionar as letras
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+
+  // Estados para o Paginate
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
+  const itemsPerPage = 5;
 
   // Estados para a barra de pesquisa
   const [search, setSearch] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [focused, setFocused] = useState(false);
 
-  // Funções para a pesquisa
-  // Buscar os animes
+  // Buscar animes/mangás pelo alfabeto
+  const fetchContentLetter = async (letter, page) => {
+    setLoading(true);
+
+    try {
+      const offset = page * itemsPerPage;
+
+      const filter =
+        letter === "#"
+          ? `filter[text]=[0-9]`
+          : `filter[text]=${letter}`;
+
+      const response =
+        type === "animes"
+          ? await getAnimesByFilter(filter, itemsPerPage, offset)
+          : await getMangasByFilter(filter, itemsPerPage, offset);
+
+      setContent(response.data);
+      setTotalPages(Math.ceil(response.meta.count / itemsPerPage));
+    } catch (error) {
+      console.error(`Erro ao buscar contéudo pela letra ${letter}. `, error);
+      setContent([]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Ao selecionar a letra, define o estado com os animes buscados
+  useEffect(() => {
+    if (selectedLetter) {
+      fetchContentLetter(selectedLetter, currentPage);
+    }
+  }, [selectedLetter, currentPage]);
+
+  // Seleciona a letra e define o Paginate para 0
+  const handleLetterClick = (letter) => {
+    setSelectedLetter(letter);
+    setCurrentPage(0);
+  };
+
+  const handlePageChange = ({ selected }) => {
+    if (selected != currentPage) {
+      setCurrentPage(selected);
+    }
+  };
+
+  // Buscar os animes/mangás para pesquisa
   const fetchSuggestions = async (input) => {
     const cachedResult = cache[input];
     if (cachedResult) {
@@ -61,7 +118,7 @@ export default function Content() {
 
     try {
       const response =
-        type === "anime"
+        type === "animes"
           ? await getAnimesByFilter(`filter[text]=${input}`)
           : await getMangasByFilter(`filter[text]=${input}`);
 
@@ -95,7 +152,7 @@ export default function Content() {
 
   // Ir para as informações do anime ao clicar em um dos cards
   const handleSearchClick = (id) => {
-    type === "anime" ? navigate(`/anime/${id}`) : navigate(`/manga/${id}`);
+    type === "animes" ? navigate(`/anime/${id}`) : navigate(`/manga/${id}`);
   };
 
   // Foque e desfoque do input da pesquisa
@@ -226,8 +283,51 @@ export default function Content() {
 
         <Alphabet
           selectedLetter={selectedLetter}
-          onClick={(letter) => setSelectedLetter(letter)}
+          onClick={(letter) => handleLetterClick(letter)}
         />
+
+        {!selectedLetter && (
+          <ContentCardLoading>
+            <ContentCardLoadingText>
+              Selecione uma letra...
+            </ContentCardLoadingText>
+          </ContentCardLoading>
+        )}
+
+        {loading && selectedLetter && (
+          <ContentCardLoading>
+            <ContentCardLoadingText>Carregando...</ContentCardLoadingText>
+          </ContentCardLoading>
+        )}
+
+        <ContentCardContainer>
+          {content.map((cont) => (
+            <ContentCard
+              key={cont.id}
+              title={cont.attributes.canonicalTitle}
+              japTitle={cont.attributes.titles.ja_jp}
+              image={cont.attributes.posterImage.original}
+              onClick={() =>
+                type === "animes"
+                  ? navigate(`/anime/${cont.id}`)
+                  : navigate(`/manga/${cont.id}`)
+              }
+            />
+          ))}
+
+          <ReactPaginate
+            key={selectedLetter}
+            pageCount={totalPages}
+            marginPagesDisplayed={2}
+            onPageChange={handlePageChange}
+            containerClassName="pagination"
+            activeClassName="active"
+            previousLabel={<HiArrowLeft color={colors.main.pk400} />}
+            previousClassName="prev"
+            nextLabel={<HiArrowRight color={colors.main.pk400} />}
+            nextClassName="next"
+          />
+        </ContentCardContainer>
       </SectionContainer>
 
       <FinalContainer>

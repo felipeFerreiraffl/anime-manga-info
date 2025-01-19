@@ -16,7 +16,7 @@ export const Card = styled.div`
     background: ${colors.main.pk400};
   }
 
-  .focused {
+  .active {
     background: ${colors.main.pk400};
   }
 

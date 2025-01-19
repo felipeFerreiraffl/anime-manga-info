@@ -170,24 +170,61 @@ export const SectionContainer = styled.div`
   .pagination {
     display: flex;
     align-items: center;
-    justify-content: center;
-    width: 100%;
     gap: 0.9375rem; // 15px
+    margin-top: 3.125rem; // 50px
   }
 
   .pagination li {
-    margin-top: 4.25rem; // 68px
     background-color: ${colors.main.pk800};
+    padding: 0.5rem 1.3125rem; // 8px 21px
+    border-radius: 5px;
     font: ${fonts.title.ttl32};
     color: ${colors.neutral.nt0};
-    padding: 8px 21px;
-    border-radius: 5px;
     cursor: pointer;
     transition: 0.3s ease-in-out;
+    width: 80%;
+  }
+
+  .pagination .active {
+    background-color: ${colors.main.pk400};
+  }
+
+  .pagination li:hover {
+    background-color: ${colors.main.pk400};
+  }
+
+  .pagination .prev,
+  .pagination .next {
+    font-size: 54px;
+    padding: 0;
+    background: transparent;
+    transition: 0.3s ease-in-out;
+  }
+
+  .pagination .prev:hover,
+  .pagination .next:hover {
+    background: transparent;
+    transform: scale(1.1);
   }
 
   @media (max-width: 430px) {
     margin-top: 3.125rem; // 50px
+
+    .pagination {
+      gap: 0.3125rem; // 5px
+      margin-top: 1.5625rem; // 25px
+      margin-bottom: 1.25rem; // 20px
+    }
+
+    .pagination li {
+      padding: 0.125rem 0.5rem; // 2px 8px
+      font: ${fonts.title.ttl14};
+    }
+
+    .pagination .prev,
+    .pagination .next {
+      font-size: 16px;
+    }
   }
 `;
 

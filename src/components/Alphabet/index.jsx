@@ -1,4 +1,3 @@
-import { useState } from "react";
 import LetterCard from "../../components/LetterCard";
 import {
   AlphabetArea,
