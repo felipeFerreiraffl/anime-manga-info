@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Animes & Mangas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projeto utlizando a API da Kitsu para buscar informações sobre animes e mangás, com filtros para popularidade, gênero, recentes, entre outros.
 
-## Available Scripts
+## Home
 
-In the project directory, you can run:
+Escolha de qual página de conteúdo escolher, `animes` ou `mangás`.
 
-### `npm start`
+## Página do conteúdo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Página que mostra uma visão geral do conteúdo escolhido.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- ### `Mais populares`
 
-### `npm test`
+Um carrosel que mostra os 10 animes/mangás mais populares de todos os tempos, com filtro de ranking de popularidade.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ### `Melhores`
 
-### `npm run build`
+  Um carrosel com os melhores animes/mangás, baseado no ranking de avaliação.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ### `Animes da temporada`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Mostra os animes/mangás que estão em andamento na temporada.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- #### Melhores avaliados
 
-### `npm run eject`
+Mostra os animes/mangás mais bem avaliados da temporada.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- #### Recentes
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Mostra os animes/mangás mais recentes lançados.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- ### `Gêneros`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Um carrosel com cards que levam à página de `gêneros` do conteúdo escolhido.
 
-## Learn More
+- ### `Ordem alfabética`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Mostra os animes/mangás baseados na letra escolhida. Ao escolher uma letra (`A` por exemplo), aparece o conteúdo que possui essa letra. Caso escolha `#`, aparece animes/mangás com números no título.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Página de detalhes do conteúdo
 
-### Code Splitting
+Página que mostra informações sobre o anime/mangá, como título canônico, título em inglês, data de criação, status, quantidade de episódios ou capítulos, etc.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Página de gêneros
 
-### Analyzing the Bundle Size
+Página que mostra o conteúdo do gênero escolhido. Os gêneros são: `Ação`, `Comédia`, `Drama`, `Esportes`, `Horror`, `Mistério`, `Romance` e `Sci-fi`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Contatos
 
-### Making a Progressive Web App
+Página com os links dos meus contatos.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- ##### [Github](https://github.com/felipeFerreiraffl)
+- ##### [Linkedin](https://www.linkedin.com/in/felipe-ferreira-959bb8271/)
+- ##### [Instagram](https://www.instagram.com/felipe_ffl7/)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Link para a documentação da API: [Kitsu API](https://kitsu.docs.apiary.io/#introduction/json:api)
