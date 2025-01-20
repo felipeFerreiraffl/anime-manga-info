@@ -43,7 +43,6 @@ import {
   SuggestionTitle,
   Title,
 } from "../../styles/pages/content";
-const cache = {};
 
 export default function Content() {
   const { type } = useParams();
@@ -111,18 +110,11 @@ export default function Content() {
 
   // Buscar os animes/mangás para pesquisa
   const fetchSuggestions = async (input) => {
-    const cachedResult = cache[input];
-    if (cachedResult) {
-      return cachedResult;
-    }
-
     try {
       const response =
         type === "animes"
           ? await getAnimesByFilter(`filter[text]=${input}`)
           : await getMangasByFilter(`filter[text]=${input}`);
-
-      cache[input] = response.data;
 
       return response.data;
     } catch (error) {
