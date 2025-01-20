@@ -70,9 +70,7 @@ export default function Content() {
       const offset = page * itemsPerPage;
 
       const filter =
-        letter === "#"
-          ? `filter[text]=[0-9]`
-          : `filter[text]=${letter}`;
+        letter === "#" ? `filter[text]=[0-9]` : `filter[text]=${letter}`;
 
       const response =
         type === "animes"
