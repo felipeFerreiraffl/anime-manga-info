@@ -7,7 +7,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   background: ${colors.gradient.ppGrd};
-  height: 100%;
+  height: 100vh;
 `;
 
 export const MainContainer = styled.div`
