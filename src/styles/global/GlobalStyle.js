@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         height: 100%;
-        /* background: ${colors.gradient.ppGrd}; */
+        background: ${colors.gradient.ppGrd};
     }
 `;
 
