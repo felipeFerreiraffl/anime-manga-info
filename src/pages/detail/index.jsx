@@ -71,7 +71,7 @@ export default function Detail() {
       ) : (
         <>
           <InitialDetails
-            backgroundImage={content.attributes.coverImage?.original || "none"}
+            $bgImage={content.attributes.coverImage?.original || "none"}
           >
             <ContentImage
               src={content.attributes.posterImage?.original || ""}
