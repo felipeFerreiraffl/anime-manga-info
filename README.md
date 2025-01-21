@@ -34,10 +34,6 @@ Mostra os animes/mangás mais recentes lançados.
 
 Um carrosel com cards que levam à página de `gêneros` do conteúdo escolhido.
 
-- ### `Ordem alfabética`
-
-Mostra os animes/mangás baseados na letra escolhida. Ao escolher uma letra (`A` por exemplo), aparece o conteúdo que possui essa letra. Caso escolha `#`, aparece animes/mangás com números no título.
-
 ## Página de detalhes do conteúdo
 
 Página que mostra informações sobre o anime/mangá, como título canônico, título em inglês, data de criação, status, quantidade de episódios ou capítulos, etc.
